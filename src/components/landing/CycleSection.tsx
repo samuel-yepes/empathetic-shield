@@ -1,5 +1,6 @@
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState } from 'react';
+import { Lightbulb, ArrowRight, RefreshCcw } from 'lucide-react';
 
 const nodes = [
   { id: 0, label: 'Inicio', desc: 'El primer acto de agresión ocurre. Puede ser verbal, físico o digital.', tip: 'Identificar las señales tempranas es clave.' },
@@ -12,97 +13,171 @@ const nodes = [
 export default function CycleSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
-  const [activeNode, setActiveNode] = useState<number | null>(null);
+  const [activeNode, setActiveNode] = useState(0);
 
-  const radius = 140;
-  const center = 180;
+  const radius = 150; 
+  const size = 400;   
+  const center = size / 2;
 
   return (
-    <section className="py-24 bg-navy relative">
-      <div className="absolute inset-0 gradient-mesh opacity-30" />
-      <div ref={ref} className="container mx-auto px-4 lg:px-8 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-16"
-        >
-          <h2 className="font-display font-bold text-4xl md:text-5xl text-softwhite mb-4">
-            El Ciclo del <span className="text-warm">Bullying</span>
-          </h2>
-          <p className="text-mutedblue font-body max-w-xl mx-auto">
-            Haz clic en cada etapa para entender cómo se perpetúa y cómo romperlo.
-          </p>
-        </motion.div>
+    <section className="py-24 bg-midnight relative overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-trust/5 rounded-full blur-[120px]" />
 
-        <div className="flex flex-col lg:flex-row items-center gap-12 justify-center">
-          <div className="relative" style={{ width: 360, height: 360 }}>
-            <svg width="360" height="360" viewBox="0 0 360 360">
-              <circle cx={center} cy={center} r={radius} fill="none" stroke="rgba(107,127,163,0.15)" strokeWidth="2" />
-              {nodes.map((node, i) => {
-                const angle = (i / nodes.length) * Math.PI * 2 - Math.PI / 2;
-                const x = center + radius * Math.cos(angle);
-                const y = center + radius * Math.sin(angle);
-                const isActive = activeNode === i;
-                
-                return (
-                  <g key={node.id}>
-                    <motion.circle
-                      cx={x}
-                      cy={y}
-                      r={isActive ? 28 : 22}
-                      fill={isActive ? '#1E6FD9' : 'rgba(30,111,217,0.15)'}
-                      stroke="#1E6FD9"
-                      strokeWidth={isActive ? 2 : 1}
-                      initial={{ scale: 0 }}
-                      animate={inView ? { scale: 1 } : {}}
-                      transition={{ delay: i * 0.2, duration: 0.4, type: 'spring' }}
-                      onClick={() => setActiveNode(activeNode === i ? null : i)}
-                      style={{ cursor: 'pointer' }}
-                    />
-                    <text
-                      x={x}
-                      y={y + 1}
-                      textAnchor="middle"
-                      dominantBaseline="middle"
-                      fill="#F0F4FF"
-                      fontSize="9"
-                      fontFamily="DM Sans"
-                      fontWeight="500"
-                      style={{ pointerEvents: 'none' }}
-                    >
-                      {node.label}
-                    </text>
-                  </g>
-                );
-              })}
+      <div ref={ref} className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-20">
+          <h2 className="font-display font-bold text-4xl md:text-6xl text-softwhite mb-6">
+            El Ciclo del <span className="text-warm italic">Bullying</span>
+          </h2>
+        </div>
+
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-16 lg:gap-24">
+          
+          {/* Visualización del Ciclo */}
+          <div className="relative" style={{ width: size, height: size }}>
+            <svg width={size} height={size} className="absolute inset-0 transform -rotate-90">
+              {/* Círculo base (fondo) */}
+              <circle
+                cx={center}
+                cy={center}
+                r={radius}
+                fill="none"
+                stroke="rgba(255,255,255,0.03)"
+                strokeWidth="2"
+              />
+              {/* Círculo de progreso animado */}
+              <motion.circle
+                cx={center}
+                cy={center}
+                r={radius}
+                fill="none"
+                stroke="url(#gradient-cycle)"
+                strokeWidth="3"
+                strokeDasharray="10 6"
+                initial={{ pathLength: 0 }}
+                animate={inView ? { pathLength: 1 } : {}}
+                transition={{ duration: 2, ease: "easeInOut" }}
+              />
+              <defs>
+                <linearGradient id="gradient-cycle" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#1E6FD9" />
+                  <stop offset="100%" stopColor="#F27457" />
+                </linearGradient>
+              </defs>
             </svg>
+
+            {nodes.map((node, i) => {
+              const angle = (i / nodes.length) * Math.PI * 2 - Math.PI / 2;
+              const x = center + radius * Math.cos(angle);
+              const y = center + radius * Math.sin(angle);
+              const isActive = activeNode === i;
+
+              return (
+                <div
+                  key={node.id}
+                  className="absolute transform -translate-x-1/2 -translate-y-1/2 z-20"
+                  style={{ left: x, top: y }}
+                >
+                  <button
+                    onClick={() => setActiveNode(i)}
+                    className="relative group focus:outline-none"
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeGlow"
+                        className="absolute -inset-4 rounded-full bg-trust/20 blur-xl"
+                        transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+                    
+                    <div className={`
+                      relative w-14 h-14 rounded-full flex items-center justify-center border-2 transition-all duration-500
+                      ${isActive 
+                        ? 'bg-trust border-trust text-white scale-110 shadow-lg shadow-trust/20' 
+                        : 'bg-midnight border-softwhite/10 text-mutedblue hover:border-trust/40'}
+                    `}>
+                      <span className="font-mono font-bold text-lg">{i + 1}</span>
+                    </div>
+
+                    <span className={`
+                      absolute top-16 left-1/2 -translate-x-1/2 whitespace-nowrap font-display font-semibold text-[10px] tracking-widest uppercase transition-all duration-300
+                      ${isActive ? 'text-softwhite opacity-100' : 'text-mutedblue/40 opacity-0 group-hover:opacity-100'}
+                    `}>
+                      {node.label}
+                    </span>
+                  </button>
+                </div>
+              );
+            })}
+
+            {/* CENTRO INTUITIVO: Contador de Fase */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <motion.div 
+                key={activeNode}
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                className="text-center bg-midnight/40 backdrop-blur-md w-32 h-32 rounded-full border border-softwhite/5 flex flex-col items-center justify-center"
+              >
+                <span className="text-mutedblue font-mono text-xs uppercase tracking-tighter mb-1">Fase</span>
+                <div className="flex items-baseline gap-1">
+                  <span className="text-softwhite font-display text-5xl font-black">{activeNode + 1}</span>
+                  <span className="text-trust font-display text-2xl font-bold">/</span>
+                  <span className="text-mutedblue/50 font-display text-xl font-bold">{nodes.length}</span>
+                </div>
+                <div className="mt-2 w-12 h-1 bg-softwhite/5 rounded-full overflow-hidden">
+                  <motion.div 
+                    className="h-full bg-trust"
+                    initial={{ width: 0 }}
+                    animate={{ width: `${((activeNode + 1) / nodes.length) * 100}%` }}
+                  />
+                </div>
+              </motion.div>
+            </div>
           </div>
 
-          <motion.div
-            initial={false}
-            animate={{ opacity: activeNode !== null ? 1 : 0.5 }}
-            className="glass-card rounded-2xl p-8 max-w-md w-full"
-          >
-            {activeNode !== null ? (
-              <>
-                <h3 className="font-display font-bold text-2xl text-softwhite mb-3">
+          {/* Tarjeta de Información */}
+          <div className="w-full max-w-md relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeNode}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="glass-card rounded-[2.5rem] p-10 border border-softwhite/5 bg-gradient-to-br from-softwhite/[0.03] to-transparent backdrop-blur-2xl"
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="h-px flex-1 bg-softwhite/10" />
+                  <span className="text-warm font-mono text-[10px] font-bold uppercase tracking-[0.2em]">Crítico</span>
+                  <div className="h-px flex-1 bg-softwhite/10" />
+                </div>
+
+                <h3 className="font-display font-bold text-4xl text-softwhite mb-4 tracking-tight">
                   {nodes[activeNode].label}
                 </h3>
-                <p className="text-mutedblue font-body mb-4 leading-relaxed">
+                
+                <p className="text-mutedblue font-body text-lg leading-relaxed mb-8 opacity-80">
                   {nodes[activeNode].desc}
                 </p>
-                <div className="bg-hope/10 rounded-xl p-4">
-                  <p className="text-hope text-sm font-body font-medium">
-                    💡 {nodes[activeNode].tip}
-                  </p>
+
+                <div className="flex items-start gap-4 bg-warm/5 border border-warm/10 rounded-2xl p-5 shadow-inner">
+                  <Lightbulb className="text-warm w-6 h-6 shrink-0" />
+                  <div>
+                    <span className="text-warm font-bold text-[10px] uppercase tracking-widest block mb-1">Estrategia de Intervención</span>
+                    <p className="text-softwhite/80 text-sm font-body leading-snug">
+                      {nodes[activeNode].tip}
+                    </p>
+                  </div>
                 </div>
-              </>
-            ) : (
-              <p className="text-mutedblue font-body text-center">
-                Selecciona una etapa del ciclo para ver su descripción.
-              </p>
-            )}
-          </motion.div>
+
+                <button 
+                  onClick={() => setActiveNode((activeNode + 1) % nodes.length)}
+                  className="mt-10 w-full py-4 rounded-xl border border-trust/20 hover:border-trust/50 hover:bg-trust/5 flex items-center justify-center gap-3 text-trust transition-all font-display font-bold text-sm uppercase tracking-widest group"
+                >
+                  {activeNode === nodes.length - 1 ? 'Reiniciar Ciclo' : 'Continuar Análisis'}
+                  {activeNode === nodes.length - 1 ? <RefreshCcw size={16} /> : <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />}
+                </button>
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>

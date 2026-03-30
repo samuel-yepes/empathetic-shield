@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Smartphone, MessageCircle, UserMinus, Zap, Eye, Shield } from 'lucide-react';
+import { Smartphone, MessageCircle, UserMinus, Zap, Eye, Shield, ChevronDown } from 'lucide-react';
 
 const concepts = [
   {
@@ -69,36 +69,61 @@ function ConceptCard({ concept, index }: { concept: typeof concepts[0]; index: n
       ref={ref}
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.08 }}
+      transition={{ duration: 0.5, delay: index * 0.05 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className={`glass-card rounded-2xl p-6 relative overflow-hidden group transition-all duration-300 hover:bg-softwhite/[0.06] ${
-        concept.large ? 'md:col-span-1 md:row-span-2' : ''
-      }`}
+      onClick={() => setHovered(!hovered)} // Mejora para móviles
+      className={`glass-card rounded-3xl p-6 relative flex flex-col overflow-hidden transition-all duration-500 border border-softwhite/5 cursor-pointer lg:cursor-default ${
+        concept.large ? 'md:col-span-2 lg:col-span-1' : 'col-span-1'
+      } ${hovered ? 'bg-softwhite/[0.08] shadow-xl' : 'bg-softwhite/[0.03]'}`}
     >
-      <div className="flex items-start justify-between mb-4">
-        <div className="w-10 h-10 rounded-xl bg-trust/10 flex items-center justify-center">
-          <concept.icon className="w-5 h-5 text-trust" />
+      <div className="relative z-10">
+        <div className="flex items-start justify-between mb-6">
+          <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-500 ${
+            hovered ? 'bg-trust text-midnight' : 'bg-trust/10 text-trust'
+          }`}>
+            <concept.icon className="w-6 h-6" />
+          </div>
+          
+          <div className="flex items-center gap-3">
+             <span className={`text-[10px] font-bold tracking-widest uppercase px-3 py-1 rounded-full border hidden sm:block ${
+              concept.severity === 'Alta' ? 'bg-warm/10 text-warm border-warm/20' : 'bg-hope/10 text-hope border-hope/20'
+            }`}>
+              {concept.severity}
+            </span>
+            {/* Indicador de despliegue (Flecha) */}
+            <motion.div
+              animate={{ rotate: hovered ? 180 : 0 }}
+              className="text-mutedblue/50"
+            >
+              <ChevronDown size={20} />
+            </motion.div>
+          </div>
         </div>
-        <span className={`text-xs font-mono px-2 py-1 rounded-full ${
-          concept.severity === 'Alta'
-            ? 'bg-warm/10 text-warm'
-            : 'bg-hope/10 text-hope'
-        }`}>
-          {concept.severity}
-        </span>
+
+        <h3 className="font-display font-bold text-2xl text-softwhite mb-3">
+          {concept.title}
+        </h3>
+        <p className="text-sm md:text-base text-mutedblue font-body leading-relaxed">
+          {concept.desc}
+        </p>
       </div>
-      <h3 className="font-display font-bold text-xl text-softwhite mb-2">{concept.title}</h3>
-      <p className="text-sm text-mutedblue font-body leading-relaxed mb-4">{concept.desc}</p>
       
       <motion.div
         initial={false}
-        animate={{ height: hovered ? 'auto' : 0, opacity: hovered ? 1 : 0 }}
-        className="overflow-hidden"
+        animate={{ 
+          height: hovered ? 'auto' : 0, 
+          opacity: hovered ? 1 : 0,
+          marginTop: hovered ? 24 : 0 
+        }}
+        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+        className="overflow-hidden relative z-10"
       >
-        <div className="pt-4 border-t border-softwhite/5">
-          <p className="font-mono text-2xl font-bold text-trust mb-1">{concept.stat}</p>
-          <p className="text-xs text-mutedblue">{concept.statLabel}</p>
+        <div className="pt-5 border-t border-softwhite/10">
+          <p className="font-mono text-3xl font-bold text-trust mb-1">{concept.stat}</p>
+          <p className="text-xs uppercase tracking-widest text-mutedblue font-semibold">
+            {concept.statLabel}
+          </p>
         </div>
       </motion.div>
     </motion.div>
@@ -106,28 +131,20 @@ function ConceptCard({ concept, index }: { concept: typeof concepts[0]; index: n
 }
 
 export default function BentoGrid() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-50px' });
-
   return (
     <section id="conceptos" className="py-24 bg-midnight">
       <div className="container mx-auto px-4 lg:px-8">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+        <div className="max-w-2xl mb-16">
           <h2 className="font-display font-bold text-4xl md:text-5xl text-softwhite mb-4">
             Tipos de <span className="text-trust">Bullying</span>
           </h2>
-          <p className="text-mutedblue font-body max-w-xl mx-auto">
-            Conocer las formas de acoso es el primer paso para prevenirlo.
+          <p className="text-mutedblue text-lg">
+            Pasa el mouse o toca una tarjeta para conocer el impacto real de cada situación.
           </p>
-        </motion.div>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-fr">
+        {/* Grid optimizado: Ya no usamos row-span-2 para evitar cartas gigantes en PC */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
           {concepts.map((concept, i) => (
             <ConceptCard key={concept.title} concept={concept} index={i} />
           ))}
