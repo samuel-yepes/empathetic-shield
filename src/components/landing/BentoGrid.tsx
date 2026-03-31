@@ -73,7 +73,7 @@ function ConceptCard({ concept, index }: { concept: typeof concepts[0]; index: n
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onClick={() => setHovered(!hovered)} // Mejora para móviles
-      className={`glass-card rounded-3xl p-6 relative flex flex-col overflow-hidden transition-all duration-500 border border-softwhite/5 cursor-pointer lg:cursor-default ${
+      className={`glass-card rounded-3xl p-6 relative flex flex-col overflow-hidden transition-all duration-500 border border-softwhite/5 ${
         concept.large ? 'md:col-span-2 lg:col-span-1' : 'col-span-1'
       } ${hovered ? 'bg-softwhite/[0.08] shadow-xl' : 'bg-softwhite/[0.03]'}`}
     >

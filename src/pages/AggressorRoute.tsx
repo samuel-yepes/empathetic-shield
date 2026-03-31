@@ -165,7 +165,6 @@ export default function AggressorRoute() {
     { icon: Brain, label: 'Jugar' },
     { icon: Users, label: 'Miradas' },
     { icon: MessageCircle, label: 'Maya' },
-    { icon: Trophy, label: 'Final' },
   ];
 
   return (
@@ -174,8 +173,21 @@ export default function AggressorRoute() {
       {/* HEADER MÓVIL */}
       <header className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-midnight/80 backdrop-blur-xl border-b border-white/5 px-6 py-4 flex justify-between items-center">
         <Link to="/caminos" className="text-mutedblue"><ArrowLeft size={22} /></Link>
-        <div className="w-24 h-1.5 bg-white/10 rounded-full overflow-hidden">
-          <motion.div className="h-full" animate={{ width: `${Math.max(0, reputationScore)}%`, backgroundColor: reputationScore > 50 ? '#00C896' : '#F4845F' }} />
+        <div className="relative w-24 h-3 bg-white/10 rounded-full overflow-hidden">
+          <motion.div
+            className="h-full flex items-center justify-center text-[9px] font-bold text-black"
+            animate={{
+              width: `${Math.max(0, reputationScore)}%`,
+              backgroundColor:
+                reputationScore >= 70
+                  ? '#00C896'   // verde
+                  : reputationScore >= 40
+                    ? '#F59E0B'   // naranja
+                    : '#EF4444'   // rojo
+            }}
+          >
+            {Math.max(0, reputationScore)}%
+          </motion.div>
         </div>
         <div className="w-6" />
       </header>
@@ -189,8 +201,21 @@ export default function AggressorRoute() {
           </Link>
           <div className="mb-10">
             <h3 className="text-[10px] text-mutedblue font-mono tracking-[0.3em] mb-4 uppercase">Reputación</h3>
-            <div className="relative w-full h-2 bg-white/5 rounded-full overflow-hidden">
-              <motion.div className="h-full" animate={{ width: `${Math.max(0, reputationScore)}%`, backgroundColor: reputationScore > 50 ? '#00C896' : '#F4845F' }} />
+            <div className="relative w-full h-4 bg-white/5 rounded-full overflow-hidden">
+              <motion.div
+                className="h-full flex items-center justify-center text-[10px] font-bold text-black"
+                animate={{
+                  width: `${Math.max(0, reputationScore)}%`,
+                  backgroundColor:
+                    reputationScore >= 70
+                      ? '#00C896'   // verde
+                      : reputationScore >= 40
+                        ? '#F59E0B'   // naranja
+                        : '#EF4444'   // rojo
+                }}
+              >
+                {Math.max(0, reputationScore)}%
+              </motion.div>
             </div>
           </div>
           <nav className="space-y-2">
@@ -451,19 +476,6 @@ export default function AggressorRoute() {
                     </div>
                   </div>
 
-                </div>
-              </motion.div>
-            )}
-
-            {/* MODULO 3: FINAL */}
-            {activeModule === 3 && (
-              <motion.div key="final" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="text-center py-20">
-                <div className="glass-card rounded-[4rem] p-12 lg:p-20 border border-white/10 bg-gradient-to-b from-white/5 to-transparent shadow-2xl inline-block max-w-2xl">
-                  <Trophy size={80} strokeWidth={1} className="text-trust mx-auto mb-8" />
-                  <h3 className="text-4xl font-black mb-6 uppercase tracking-tighter">Módulo Completado</h3>
-                  <div className="text-6xl font-black text-trust mb-6">{reputationScore}</div>
-                  <p className="text-mutedblue text-lg mb-10">Has finalizado tu análisis de impacto social.</p>
-                  <Link to="/caminos" className="inline-block px-12 py-5 bg-trust text-midnight font-black rounded-2xl tracking-widest uppercase hover:scale-105 transition-transform">Continuar</Link>
                 </div>
               </motion.div>
             )}
