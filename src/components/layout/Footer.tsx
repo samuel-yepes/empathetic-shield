@@ -1,4 +1,4 @@
-import { Shield, Heart } from 'lucide-react';
+import { Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Footer() {
@@ -7,9 +7,9 @@ export default function Footer() {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <Shield className="w-6 h-6 text-trust" />
-              <span className="font-display font-bold text-lg text-softwhite">Escudo</span>
+            <div className="flex items-center gap-4">
+              <img src="/logo.png" alt="Empathix Logo" className="w-16 h-16" />
+              <span className="font-display font-bold text-2xl text-softwhite">Empathix</span>
             </div>
             <p className="text-sm text-mutedblue leading-relaxed">
               Plataforma educativa interactiva para la prevención del bullying. Construyendo entornos seguros.

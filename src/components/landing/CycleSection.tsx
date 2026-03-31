@@ -20,7 +20,7 @@ export default function CycleSection() {
   const center = size / 2;
 
   return (
-    <section className="py-24 bg-midnight relative overflow-hidden">
+    <section className="py-24 bg-midnight relative overflow-hidden" id="ciclo">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-trust/5 rounded-full blur-[120px]" />
 
       <div ref={ref} className="container mx-auto px-4 relative z-10">

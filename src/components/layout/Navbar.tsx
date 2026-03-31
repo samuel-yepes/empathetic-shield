@@ -5,9 +5,8 @@ import { Menu, X } from 'lucide-react';
 
 const links = [
   { label: 'Inicio', to: '/' },
-  { label: 'Aprende', to: '/#conceptos' },
   { label: 'Tu Camino', to: '/caminos' },
-  { label: 'Recursos', to: '/emergencia' },
+  { label: 'Recursos', to: '/recursos' },
   { label: 'Emergencia', to: '/emergencia' },
 ];
 
@@ -40,11 +39,11 @@ export default function Navbar() {
           <motion.img 
             src="/logo.png" 
             alt="Escudo Logo" 
-            className="w-24 h-24"
+            className="w-12 h-12 md:w-24 md:h-24"
             whileHover={{ rotate: 12 }} 
             transition={{ type: 'spring', stiffness: 300 }}
           />
-          <span className="font-display font-bold text-4xl text-softwhite">Empathix</span>
+          {/* <span className="font-display font-bold text-4xl text-softwhite">Empathix</span> */}
         </Link>
 
         <div className="hidden md:flex items-center gap-8">

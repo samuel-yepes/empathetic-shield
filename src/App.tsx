@@ -13,6 +13,7 @@ const AggressorRoute = lazy(() => import('./pages/AggressorRoute'));
 const VictimRoute = lazy(() => import('./pages/VictimRoute'));
 const WitnessRoute = lazy(() => import('./pages/WitnessRoute'));
 const EmergencyDirectory = lazy(() => import('./pages/EmergencyDirectory'));
+const Resources = lazy(() => import('./pages/Resources'));
 
 const queryClient = new QueryClient();
 
@@ -35,6 +36,7 @@ function AnimatedRoutes() {
           <Route path="/ruta/agresor" element={<AggressorRoute />} />
           <Route path="/ruta/victima" element={<VictimRoute />} />
           <Route path="/ruta/testigo" element={<WitnessRoute />} />
+          <Route path="/recursos" element={<Resources />} />
           <Route path="/emergencia" element={<EmergencyDirectory />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

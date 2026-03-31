@@ -195,10 +195,15 @@ export default function AggressorRoute() {
       <div className="flex flex-col lg:flex-row pt-20 lg:pt-24 lg:px-10">
 
         {/* SIDEBAR ESCRITORIO */}
-        <aside className="hidden lg:block w-72 min-h-screen border-r border-white/5 p-6 sticky top-24 self-start">
-          <Link to="/caminos" className="flex items-center gap-2 text-mutedblue text-xs font-mono mb-12 hover:text-trust transition-all">
-            <ArrowLeft className="w-4 h-4" /> VOLVER AL MAPA
-          </Link>
+        <aside className="hidden lg:block w-72 min-h-screen border-r border-white/5 p-6 sticky top-24 self-start z-40">
+          <div className="mb-12">
+            <Link
+              to="/caminos"
+              className="inline-flex items-center gap-2 text-mutedblue text-[10px] font-mono tracking-widest hover:text-trust transition-all py-2"
+            >
+              <ArrowLeft className="w-4 h-4" /> VOLVER AL MAPA
+            </Link>
+          </div>
           <div className="mb-10">
             <h3 className="text-[10px] text-mutedblue font-mono tracking-[0.3em] mb-4 uppercase">Reputación</h3>
             <div className="relative w-full h-4 bg-white/5 rounded-full overflow-hidden">

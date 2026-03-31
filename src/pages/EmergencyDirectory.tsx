@@ -1,7 +1,6 @@
-import { useState } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
-import { Phone, Clock, Lock, AlertTriangle } from 'lucide-react';
+import { useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Phone, Clock, ShieldCheck, Heart, Info, AlertCircle, ArrowRight } from 'lucide-react';
 
 const countries = [
   {
@@ -9,8 +8,8 @@ const countries = [
     name: 'Colombia',
     flag: '🇨🇴',
     resources: [
-      { name: 'Línea 106', number: '106', hours: '24 horas', free: true, confidential: true },
-      { name: 'ICBF', number: '01-8000-918080', hours: 'Lun-Vie 8am-5pm', free: true, confidential: true },
+      { name: 'Línea 106 (Salud Mental)', number: '106', hours: '24/7', type: 'Jóvenes' },
+      { name: 'Protección ICBF', number: '141', hours: '24/7', type: 'Emergencia' },
     ],
   },
   {
@@ -18,8 +17,8 @@ const countries = [
     name: 'México',
     flag: '🇲🇽',
     resources: [
-      { name: 'CNDH', number: '800-906-3900', hours: '24 horas', free: true, confidential: true },
-      { name: 'SAPTEL', number: '55-5259-8121', hours: '24 horas', free: true, confidential: true },
+      { name: 'SAPTEL Crisis', number: '55-5259-8121', hours: '24/7', type: 'Psicológico' },
+      { name: 'Línea de la Vida', number: '800-911-2000', hours: '24/7', type: 'Apoyo' },
     ],
   },
   {
@@ -27,8 +26,8 @@ const countries = [
     name: 'España',
     flag: '🇪🇸',
     resources: [
-      { name: 'Teléfono de la Esperanza', number: '717 003 717', hours: '24 horas', free: true, confidential: true },
-      { name: 'ANAR', number: '900 20 20 10', hours: '24 horas', free: true, confidential: true },
+      { name: 'Fundación ANAR', number: '900-20-20-10', hours: '24/7', type: 'Menores' },
+      { name: 'Teléfono Esperanza', number: '717-003-717', hours: '24/7', type: 'Crisis' },
     ],
   },
   {
@@ -36,8 +35,8 @@ const countries = [
     name: 'Argentina',
     flag: '🇦🇷',
     resources: [
-      { name: 'Centro de Asistencia al Suicida', number: '135', hours: '24 horas', free: true, confidential: true },
-      { name: 'Línea 102', number: '102', hours: '24 horas', free: true, confidential: true },
+      { name: 'Línea 102', number: '102', hours: '24/7', type: 'Niñez' },
+      { name: 'Asistencia Suicida', number: '135', hours: '24/7', type: 'Prevención' },
     ],
   },
   {
@@ -45,117 +44,142 @@ const countries = [
     name: 'Chile',
     flag: '🇨🇱',
     resources: [
-      { name: 'Fono Infancia', number: '800-200-818', hours: 'Lun-Vie 8:30am-9pm', free: true, confidential: true },
-      { name: 'Línea Libre', number: '1515', hours: '24 horas', free: true, confidential: true },
+      { name: 'Línea Libre', number: '1515', hours: '24/7', type: 'Escucha' },
+      { name: 'Salud Responde', number: '600-360-7777', hours: '24/7', type: 'Salud' },
     ],
-  },
-  {
-    code: 'peru',
-    name: 'Perú',
-    flag: '🇵🇪',
-    resources: [
-      { name: 'Línea 100', number: '100', hours: '24 horas', free: true, confidential: true },
-    ],
-  },
+  }
 ];
 
 export default function EmergencyDirectory() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-50px' });
   const [selectedCountry, setSelectedCountry] = useState('colombia');
-
-  const country = countries.find((c) => c.code === selectedCountry)!;
+  const country = countries.find((c) => c.code === selectedCountry);
 
   return (
-    <div className="min-h-screen bg-midnight pt-28 pb-20">
-      <motion.div
-        initial={{ y: -50 }}
-        animate={{ y: 0 }}
-        className="fixed top-16 left-0 right-0 z-40 bg-warm/90 text-softwhite py-2.5 px-4 text-center font-body text-sm flex items-center justify-center gap-2"
+    <div className="min-h-screen bg-midnight text-softwhite font-body pt-28">
+      
+      {/* Banner 911 - Ubicación debajo del Navbar */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="bg-red-500/10 border-b border-red-500/20 py-3 px-4 flex items-center justify-center gap-3 text-xs md:text-sm"
       >
-        <AlertTriangle className="w-4 h-4" />
-        ¿Estás en peligro ahora?
-        <a href="tel:911" className="underline font-bold ml-1">Llama al 911 →</a>
+        <AlertCircle size={14} className="text-red-500" />
+        <span className="text-red-200/80">¿Peligro inmediato?</span>
+        <a href="tel:911" className="font-bold text-red-500 hover:underline flex items-center gap-1">
+          Llama al 911 <ArrowRight size={12} />
+        </a>
       </motion.div>
 
-      <div ref={ref} className="container mx-auto px-4 lg:px-8 pt-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-12"
-        >
-          <h1 className="font-display font-bold text-4xl md:text-5xl text-softwhite mb-4">
-            Directorio de <span className="text-trust">Emergencia</span>
+      <div className="container mx-auto px-6 py-12 max-w-5xl">
+        
+        {/* Encabezado Compacto */}
+        <header className="text-center mb-10">
+          <h1 className="text-3xl md:text-4xl font-display font-bold mb-3">
+            Centro de <span className="text-trust">Ayuda Directa</span>
           </h1>
-          <p className="text-mutedblue font-body max-w-xl mx-auto">
-            Encuentra líneas de ayuda gratuitas y confidenciales en tu país.
+          <p className="text-mutedblue text-sm max-w-lg mx-auto">
+            Recursos confidenciales y gratuitos. No estás solo en esto, hay personas listas para escucharte hoy mismo.
           </p>
-        </motion.div>
+        </header>
 
-        <div className="max-w-3xl mx-auto">
-          <div className="flex flex-wrap gap-2 justify-center mb-10">
-            {countries.map((c) => (
-              <motion.button
-                key={c.code}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setSelectedCountry(c.code)}
-                className={`px-4 py-2.5 rounded-xl text-sm font-body flex items-center gap-2 transition-colors ${
-                  selectedCountry === c.code
-                    ? 'bg-trust/20 text-trust'
-                    : 'glass-card text-mutedblue hover:text-softwhite'
-                }`}
-              >
-                <span>{c.flag}</span>
-                {c.name}
-              </motion.button>
-            ))}
+        <div className="grid lg:grid-cols-12 gap-8 items-start">
+          
+          {/* Columna Izquierda: Mensaje y Selector */}
+          <div className="lg:col-span-4 space-y-6">
+            <div className="glass-card p-6 rounded-2xl border border-white/5 bg-white/[0.02]">
+              <h2 className="text-lg font-bold mb-4 flex items-center gap-2">
+                <ShieldCheck size={18} className="text-hope" />
+                Espacio Seguro
+              </h2>
+              <ul className="space-y-4">
+                <li className="flex gap-3 text-xs text-mutedblue leading-relaxed">
+                  <div className="h-5 w-5 rounded-full bg-trust/10 flex items-center justify-center shrink-0">
+                    <Heart size={12} className="text-trust" />
+                  </div>
+                  <span>Tu llamada es <strong>anónima</strong>. No necesitas dar tu nombre real si no quieres.</span>
+                </li>
+                <li className="flex gap-3 text-xs text-mutedblue leading-relaxed">
+                  <div className="h-5 w-5 rounded-full bg-hope/10 flex items-center justify-center shrink-0">
+                    <Info size={12} className="text-hope" />
+                  </div>
+                  <span>Puedes colgar en cualquier momento. Tú llevas el ritmo de la conversación.</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Selector de Países Vertical / Grid Compacto */}
+            <div className="flex flex-wrap lg:flex-col gap-2">
+              <p className="text-[10px] uppercase tracking-widest text-mutedblue font-bold ml-2 mb-1 w-full">Selecciona tu país</p>
+              {countries.map((c) => (
+                <button
+                  key={c.code}
+                  onClick={() => setSelectedCountry(c.code)}
+                  className={`flex-1 lg:flex-none flex items-center justify-between px-4 py-3 rounded-xl transition-all border ${
+                    selectedCountry === c.code
+                      ? 'bg-trust/10 border-trust text-trust'
+                      : 'bg-white/5 border-white/5 text-mutedblue hover:border-white/20'
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="text-lg">{c.flag}</span>
+                    <span className="text-sm font-semibold">{c.name}</span>
+                  </div>
+                  {selectedCountry === c.code && <div className="h-1.5 w-1.5 rounded-full bg-trust animate-pulse" />}
+                </button>
+              ))}
+            </div>
           </div>
 
-          <motion.div
-            key={selectedCountry}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="space-y-4"
-          >
-            {country.resources.map((resource, i) => (
+          {/* Columna Derecha: Tarjetas de Números */}
+          <div className="lg:col-span-8">
+            <AnimatePresence mode="wait">
               <motion.div
-                key={resource.name}
-                initial={{ opacity: 0, y: 20 }}
+                key={selectedCountry}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                className="glass-card rounded-2xl p-6 md:p-8"
+                exit={{ opacity: 0, y: -10 }}
+                className="grid gap-4"
               >
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                  <div>
-                    <h3 className="font-display font-bold text-xl text-softwhite mb-2">{resource.name}</h3>
-                    <div className="flex flex-wrap gap-2 mb-3">
-                      {resource.free && (
-                        <span className="text-xs bg-hope/10 text-hope px-2.5 py-1 rounded-full font-body">Gratuito</span>
-                      )}
-                      <span className="text-xs bg-trust/10 text-trust px-2.5 py-1 rounded-full font-body flex items-center gap-1">
-                        <Clock className="w-3 h-3" />{resource.hours}
-                      </span>
-                      {resource.confidential && (
-                        <span className="text-xs bg-softwhite/5 text-mutedblue px-2.5 py-1 rounded-full font-body flex items-center gap-1">
-                          <Lock className="w-3 h-3" />Confidencial
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                  <motion.a
-                    href={`tel:${resource.number.replace(/\s/g, '')}`}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-trust text-softwhite font-body font-semibold text-sm whitespace-nowrap"
+                {country?.resources.map((res) => (
+                  <div 
+                    key={res.name}
+                    className="group glass-card p-5 rounded-2xl border border-white/5 hover:border-trust/30 transition-all flex items-center justify-between gap-4"
                   >
-                    <Phone className="w-4 h-4" />
-                    {resource.number}
-                  </motion.a>
-                </div>
+                    <div className="space-y-1">
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] font-bold text-trust uppercase tracking-tighter bg-trust/10 px-2 py-0.5 rounded">
+                          {res.type}
+                        </span>
+                        <span className="flex items-center gap-1 text-[10px] text-mutedblue uppercase">
+                          <Clock size={10} /> {res.hours}
+                        </span>
+                      </div>
+                      <h3 className="font-bold text-softwhite text-lg">{res.name}</h3>
+                    </div>
+
+                    <a
+                      href={`tel:${res.number.replace(/\s/g, '')}`}
+                      className="flex flex-col items-end group"
+                    >
+                      <div className="bg-softwhite text-midnight p-3 rounded-xl group-hover:bg-trust group-hover:text-white transition-colors shadow-lg">
+                        <Phone size={20} className="fill-current" />
+                      </div>
+                      <span className="text-[11px] font-bold mt-2 text-mutedblue group-hover:text-softwhite transition-colors tracking-tighter">
+                        {res.number}
+                      </span>
+                    </a>
+                  </div>
+                ))}
+
+                {/* Nota de pie informativa */}
+                <p className="text-center text-sm text-mutedblue/80 mt-4 px-10 leading-relaxed">
+                  * Los números presentados son servicios públicos o de ONGs reconocidas. 
+                  El costo de la llamada depende de tu operador local (la mayoría son gratuitos).
+                </p>
               </motion.div>
-            ))}
-          </motion.div>
+            </AnimatePresence>
+          </div>
+
         </div>
       </div>
     </div>
