@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Shield, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const links = [
   { label: 'Inicio', to: '/' },
@@ -36,11 +36,15 @@ export default function Navbar() {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-4 lg:px-8">
-        <Link to="/" className="flex items-center gap-2 group">
-          <motion.div whileHover={{ rotate: 12 }} transition={{ type: 'spring', stiffness: 300 }}>
-            <Shield className="w-8 h-8 text-trust" />
-          </motion.div>
-          <span className="font-display font-bold text-xl text-softwhite">Escudo</span>
+        <Link to="/" className="flex items-center gap-4 group">
+          <motion.img 
+            src="/logo.png" 
+            alt="Escudo Logo" 
+            className="w-24 h-24"
+            whileHover={{ rotate: 12 }} 
+            transition={{ type: 'spring', stiffness: 300 }}
+          />
+          <span className="font-display font-bold text-4xl text-softwhite">Empathix</span>
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
