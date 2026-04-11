@@ -11,9 +11,9 @@ const breathingSteps = ['Inhala...', 'Sostén...', 'Exhala...', 'Descansa...'];
 
 const supportCategories = [
   { label: 'Familia', icon: '👨‍👩‍👧', people: ['Mamá', 'Papá', 'Hermano/a', 'Abuelo/a'] },
-  { label: 'Escuela', icon: '🏫', people: ['Maestro/a', 'Orientador/a', 'Director/a', 'Compañero/a'] },
-  { label: 'Amigos', icon: '💛', people: ['Mejor amigo/a', 'Amigo/a de confianza', 'Vecino/a'] },
-  { label: 'Profesionales', icon: '🩺', people: ['Psicólogo/a', 'Médico/a', 'Línea de ayuda'] },
+  { label: 'Escuela', icon: '🏫', people: ['Maestro/a', 'Orientador/a'] },
+  { label: 'Amigos', icon: '💛', people: ['Mejor amigo/a'] },
+  { label: 'Profesionales', icon: '🩺', people: ['Psicólogo/a', 'Médico/a', 'Línea de ayuda', 'Trabajador Social', 'Consejero', 'Terapeuta'] },
 ];
 
 const transformations = {

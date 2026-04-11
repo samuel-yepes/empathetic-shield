@@ -395,9 +395,6 @@ export default function Resources() {
       {/* ── HERO ── */}
       <section className="container mx-auto max-w-6xl px-4 sm:px-6 text-center mb-16 sm:mb-20">
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-          <div className="inline-flex items-center gap-2 bg-trust/10 border border-trust/20 text-trust text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
-            <Shield size={12} /> Fuentes verificadas y reales
-          </div>
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-display font-bold mb-5 tracking-tight leading-none">
             Biblioteca de<br />
             <span className="text-trust">Evidencia</span>
