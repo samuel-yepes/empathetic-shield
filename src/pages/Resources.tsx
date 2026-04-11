@@ -1,23 +1,9 @@
 import { useState, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import {
-  Play,
-  BarChart3,
-  MessageSquare,
-  BookOpen,
-  TrendingUp,
-  Users,
-  Target,
-  Download,
-  ExternalLink,
-  Clock,
-  ChevronRight,
-  Shield,
-  FileText,
-  Globe,
-  AlertCircle,
-  ArrowUpRight,
-  LayoutGrid,
+  Play, BarChart3, MessageSquare, BookOpen, TrendingUp, Users, Target,
+  ExternalLink, Clock, Shield, FileText, Globe, AlertCircle, ArrowUpRight,
+  LayoutGrid, Zap, Heart, Brain
 } from 'lucide-react';
 
 const resources = {
@@ -25,8 +11,7 @@ const resources = {
     {
       id: 1,
       title: 'Documental Acoso Escolar – Convivencia',
-      description:
-        'Documental producido por EducaMadrid con testimonios reales de estudiantes y educadores sobre el impacto del bullying y cómo la comunidad escolar puede actuar.',
+      description: 'Documental producido por EducaMadrid con testimonios reales de estudiantes y educadores sobre el impacto del bullying y cómo la comunidad escolar puede actuar.',
       duration: '~20 min',
       category: 'Documental',
       url: 'https://www.youtube.com/watch?v=lMm_FscDUKM',
@@ -36,8 +21,7 @@ const resources = {
     {
       id: 2,
       title: 'Testimonios contra el Acoso Escolar',
-      description:
-        'Serie de testimonios en video de jóvenes que han vivido el acoso escolar, compartiendo sus experiencias y consejos para quienes están pasando por lo mismo.',
+      description: 'Serie de testimonios en video de jóvenes que han vivido el acoso escolar, compartiendo sus experiencias y consejos para quienes están pasando por lo mismo.',
       duration: '~12 min',
       category: 'Testimonio',
       url: 'https://youtu.be/TwnrKUceJbQ?si=gUzRoVWP76tXbBz2',
@@ -47,8 +31,7 @@ const resources = {
     {
       id: 3,
       title: 'Ciberacoso: Cómo detectarlo y prevenirlo',
-      description:
-        'UNICEF España explica qué es el ciberacoso, cómo afecta a los adolescentes en redes sociales y qué pueden hacer familias, docentes y estudiantes para detenerlo.',
+      description: 'UNICEF España explica qué es el ciberacoso, cómo afecta a los adolescentes en redes sociales y qué pueden hacer familias, docentes y estudiantes para detenerlo.',
       category: 'Digital',
       url: 'https://www.unicef.es/acoso-escolar-bullying',
       thumbnail: null,
@@ -61,8 +44,7 @@ const resources = {
       title: 'Aprender y crecer con seguridad: acabar con la violencia escolar (2024)',
       author: 'UNESCO',
       year: 2024,
-      description:
-        'Informe global presentado en la Conferencia Ministerial de Bogotá. Concluye que la violencia escolar afecta a ~1.000 millones de niños al año.',
+      description: 'Informe global presentado en la Conferencia Ministerial de Bogotá. Concluye que la violencia escolar afecta a ~1.000 millones de niños al año.',
       tags: ['Global', 'Estadística', 'Políticas'],
       url: 'https://www.unesco.org/es/articles/violencia-y-acoso-escolar-la-unesco-reclama-una-mejor-proteccion-de-los-estudiantes',
     },
@@ -71,8 +53,7 @@ const resources = {
       title: 'Más allá de los números: poner fin al acoso escolar',
       author: 'UNESCO',
       year: 2019,
-      description:
-        'Análisis de 144 países con datos de encuestas GSHS y HBSC. Primer informe integral de la UNESCO sobre violencia escolar y bullying.',
+      description: 'Análisis de 144 países con datos de encuestas GSHS y HBSC. Primer informe integral de la UNESCO sobre violencia escolar y bullying.',
       tags: ['Investigación', 'Datos', 'Prevención'],
       url: 'https://unesdoc.unesco.org/ark:/48223/pf0000378398',
     },
@@ -81,8 +62,7 @@ const resources = {
       title: 'Ocultos a plena luz: violencia contra la infancia',
       author: 'UNICEF',
       year: 2020,
-      description:
-        'Compilación de datos sobre violencia física, sexual y emocional contra niños. Revela actitudes que perpetan y justifican la violencia.',
+      description: 'Compilación de datos sobre violencia física, sexual y emocional contra niños. Revela actitudes que perpetan y justifican la violencia.',
       tags: ['Salud Mental', 'Infancia', 'Derechos'],
       url: 'https://www.unicef.es/sites/unicef.es/files/informeocultosbajolaluz.pdf',
     },
@@ -91,8 +71,7 @@ const resources = {
       title: 'Acoso escolar y ciberacoso: propuestas para la acción',
       author: 'Save the Children España',
       year: 2023,
-      description:
-        'Estudio con datos actualizados sobre prevalencia en España y propuestas de intervención para centros educativos y familias.',
+      description: 'Estudio con datos actualizados sobre prevalencia en España y propuestas de intervención para centros educativos y familias.',
       tags: ['España', 'Intervención', 'Ciberacoso'],
       url: 'https://www.savethechildren.es/sites/default/files/imce/docs/acoso_escolar_y_ciberacoso.pdf',
     },
@@ -141,20 +120,122 @@ const resources = {
   ],
   stats: [
     { label: 'Países con datos', value: '144+', icon: Globe, color: 'text-blue-400' },
-    { label: 'Niños afectados/año', value: '1B+', icon: Users, color: 'text-coral-400' },
+    { label: 'Niños afectados/año', value: '1B+', icon: Users, color: 'text-red-400' },
     { label: 'Publicaciones UNESCO', value: '12+', icon: FileText, color: 'text-teal-400' },
     { label: 'Tasa de reducción posible', value: '50%', icon: TrendingUp, color: 'text-green-400' },
   ],
 };
 
 const colorMap = {
-  coral: { bg: 'bg-red-500/10', border: 'border-red-500/20', text: 'text-red-400', value: 'text-red-300' },
-  amber: { bg: 'bg-amber-500/10', border: 'border-amber-500/20', text: 'text-amber-400', value: 'text-amber-300' },
-  blue: { bg: 'bg-blue-500/10', border: 'border-blue-500/20', text: 'text-blue-400', value: 'text-blue-300' },
+  coral:  { bg: 'bg-red-500/10',    border: 'border-red-500/20',    text: 'text-red-400',    value: 'text-red-300'    },
+  amber:  { bg: 'bg-amber-500/10',  border: 'border-amber-500/20',  text: 'text-amber-400',  value: 'text-amber-300'  },
+  blue:   { bg: 'bg-blue-500/10',   border: 'border-blue-500/20',   text: 'text-blue-400',   value: 'text-blue-300'   },
   purple: { bg: 'bg-violet-500/10', border: 'border-violet-500/20', text: 'text-violet-400', value: 'text-violet-300' },
 };
 
-// --- Subcomponentes de Tarjetas ---
+const hexagonData = [
+  { id: 1, icon: Shield,  title: 'Protección Activa',       description: 'Protocolos de seguridad verificados por expertos internacionales.', color: 'trust',  pilar: 'Prevención' },
+  { id: 2, icon: Users,   title: 'Comunidad Unida',          description: 'Fomentar la empatía y el apoyo mutuo entre estudiantes.',            color: 'teal',   pilar: 'Cultura'    },
+  { id: 3, icon: Zap,     title: 'Detección Ágil',           description: 'Identificar señales de alerta temprana en el entorno digital.',      color: 'amber',  pilar: 'Acción'     },
+  { id: 4, icon: Target,  title: 'Intervención Focalizada',  description: 'Estrategias directas basadas en la evidencia recolectada.',          color: 'coral',  pilar: 'Estrategia' },
+  { id: 5, icon: Heart,   title: 'Apoyo Emocional',          description: 'Recursos dedicados a la salud mental y la sanación.',                color: 'purple', pilar: 'Sanación'   },
+  { id: 6, icon: Brain,   title: 'Educación Continua',       description: 'Formación constante para familias, docentes y alumnos.',             color: 'blue',   pilar: 'Formación'  },
+];
+
+const hexColorMap = {
+  trust:  { text: 'text-blue-400',   bg: 'bg-blue-500/10',   border: 'border-blue-500/30',   stop: '#3b82f6' },
+  teal:   { text: 'text-teal-400',   bg: 'bg-teal-500/10',   border: 'border-teal-500/30',   stop: '#14b8a6' },
+  amber:  { text: 'text-amber-400',  bg: 'bg-amber-500/10',  border: 'border-amber-500/30',  stop: '#f59e0b' },
+  coral:  { text: 'text-red-400',    bg: 'bg-red-500/10',    border: 'border-red-500/30',    stop: '#ef4444' },
+  purple: { text: 'text-violet-400', bg: 'bg-violet-500/10', border: 'border-violet-500/30', stop: '#8b5cf6' },
+  blue:   { text: 'text-blue-400',   bg: 'bg-blue-500/10',   border: 'border-blue-500/30',   stop: '#60a5fa' },
+};
+
+// ─── InteractiveHexagon ────────────────────────────────────────────────────────
+// CAMBIOS:
+//   • Padding reducido en mobile (p-2 sm:p-4 md:p-6) para que quepa el contenido
+//   • Icono más pequeño en mobile (w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12)
+//   • Título: text-xs sm:text-sm md:text-base (visible en desktop y mobile)
+//   • Descripción: visible a partir de md (antes era sm)
+//   • Pilar: visible en todos los tamaños con texto ligeramente más grande
+
+const InteractiveHexagon = ({ item, index }) => {
+  const c = hexColorMap[item.color];
+  const Icon = item.icon;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.1, duration: 0.5 }}
+      whileHover={{ y: -10, transition: { duration: 0.2 } }}
+      className="relative aspect-[100/115] group cursor-default"
+    >
+      <svg viewBox="0 0 100 115.47" className={`absolute inset-0 w-full h-full drop-shadow-2xl transition-all duration-300 ${c.text}`}>
+        <defs>
+          <linearGradient id={`grad-${item.id}`} x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#0f172a" stopOpacity="1" />
+            <stop offset="100%" stopColor={c.stop} stopOpacity="0.08" />
+          </linearGradient>
+        </defs>
+        <path
+          d="M50 0 L100 28.87 L100 86.6 L50 115.47 L0 86.6 L0 28.87 Z"
+          fill={`url(#grad-${item.id})`}
+          stroke="currentColor"
+          strokeWidth="1.5"
+          className="opacity-30 group-hover:opacity-100 transition-opacity duration-500"
+        />
+      </svg>
+
+      {/* Contenido interior del hexágono */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center p-3 sm:p-4 md:p-5 lg:p-6 text-center z-10">
+        {/* Icono */}
+        <div className={`
+          w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 lg:w-12 lg:h-12
+          rounded-full ${c.bg} flex items-center justify-center
+          mb-2 sm:mb-2 md:mb-2.5 lg:mb-3
+          border ${c.border}
+          group-hover:scale-110 transition-transform shrink-0
+        `}>
+          <Icon className={`w-5 h-5 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-6 lg:h-6 ${c.text}`} strokeWidth={1.5} />
+        </div>
+
+        {/* Pilar — visible en todos los tamaños */}
+        <p className={`
+          text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px]
+          font-black uppercase tracking-[0.15em] sm:tracking-[0.2em]
+          ${c.text} mb-1 sm:mb-1
+          opacity-70 group-hover:opacity-100 transition-opacity
+        `}>
+          {item.pilar}
+        </p>
+
+        {/* Título — grande y visible en desktop */}
+        <h3 className="
+          font-display font-bold text-softwhite leading-tight
+          text-[11px] sm:text-sm md:text-sm lg:text-base
+          mb-1 sm:mb-1 md:mb-1.5 lg:mb-2
+          px-1
+        ">
+          {item.title}
+        </h3>
+
+        {/* Descripción — visible desde sm en adelante */}
+        <p className="
+          text-softwhite/90 leading-relaxed
+          hidden sm:block
+          text-[9px] sm:text-[10px] md:text-[10px] lg:text-[11px]
+          max-w-[110px] sm:max-w-[130px] md:max-w-[130px] lg:max-w-[145px]
+        ">
+          {item.description}
+        </p>
+      </div>
+    </motion.div>
+  );
+};
+
+// ─── VideoCard ─────────────────────────────────────────────────────────────────
 const VideoCard = ({ video, index }) => (
   <motion.div
     initial={{ opacity: 0, y: 24 }}
@@ -167,8 +248,7 @@ const VideoCard = ({ video, index }) => (
         <img
           src={video.thumbnail}
           alt={video.title}
-          className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
-        />
+          className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
       ) : (
         <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-trust/10 to-hope/10">
           <Play className="w-10 h-10 text-trust/40" />
@@ -198,7 +278,6 @@ const VideoCard = ({ video, index }) => (
       )}
     </div>
     <div className="p-5 flex flex-col flex-1">
-      <p className="text-[10px] font-bold text-trust/60 uppercase tracking-widest mb-2">{video.source}</p>
       <h3 className="font-bold text-softwhite text-base leading-snug mb-2 group-hover:text-trust transition-colors">
         {video.title}
       </h3>
@@ -215,6 +294,7 @@ const VideoCard = ({ video, index }) => (
   </motion.div>
 );
 
+// ─── StudyCard ─────────────────────────────────────────────────────────────────
 const StudyCard = ({ study, index }) => (
   <motion.a
     href={study.url}
@@ -257,6 +337,7 @@ const StudyCard = ({ study, index }) => (
   </motion.a>
 );
 
+// ─── LiveDataCard ──────────────────────────────────────────────────────────────
 const LiveDataCard = ({ item, index }) => {
   const c = colorMap[item.color];
   const Icon = item.icon;
@@ -296,20 +377,22 @@ const LiveDataCard = ({ item, index }) => {
   );
 };
 
+// ─── Resources (página principal) ─────────────────────────────────────────────
 export default function Resources() {
   const [activeTab, setActiveTab] = useState('videos');
   const headerRef = useRef(null);
   const inView = useInView(headerRef, { once: true });
 
   const tabs = [
-    { id: 'videos', label: 'Multimedia', icon: Play },
-    { id: 'studies', label: 'Investigaciones', icon: BarChart3 },
-    { id: 'liveData', label: 'Datos en Vivo', icon: MessageSquare },
+    { id: 'videos',    label: 'Multimedia',      icon: Play      },
+    { id: 'studies',   label: 'Investigaciones', icon: BarChart3 },
+    { id: 'liveData',  label: 'Datos en Vivo',   icon: MessageSquare },
   ];
 
   return (
     <div className="min-h-screen bg-midnight text-softwhite font-body pt-24 pb-24">
-      {/* --- HERO --- */}
+
+      {/* ── HERO ── */}
       <section className="container mx-auto max-w-6xl px-4 sm:px-6 text-center mb-16 sm:mb-20">
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
           <div className="inline-flex items-center gap-2 bg-trust/10 border border-trust/20 text-trust text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
@@ -320,12 +403,12 @@ export default function Resources() {
             <span className="text-trust">Evidencia</span>
           </h1>
           <p className="text-mutedblue text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
-            Un repositorio de datos reales, investigaciones revisadas por expertos y recursos multimedia 
+            Un repositorio de datos reales, investigaciones revisadas por expertos y recursos multimedia
             para la prevención del acoso escolar.
           </p>
         </motion.div>
 
-        {/* Stats Grid */}
+        {/* Stats grid */}
         <div ref={headerRef} className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-12 max-w-3xl mx-auto">
           {resources.stats.map((stat, i) => {
             const Icon = stat.icon;
@@ -348,9 +431,10 @@ export default function Resources() {
         </div>
       </section>
 
-      {/* --- CONTENIDO PRINCIPAL --- */}
+      {/* ── CONTENIDO PRINCIPAL ── */}
       <div className="container mx-auto max-w-6xl px-4 sm:px-6">
-        {/* Tab Nav */}
+
+        {/* Tabs */}
         <div className="flex justify-center mb-10 sm:mb-14">
           <div className="flex flex-wrap justify-center gap-1.5 bg-white/[0.03] p-1.5 rounded-2xl border border-white/8">
             {tabs.map((tab) => (
@@ -370,6 +454,7 @@ export default function Resources() {
           </div>
         </div>
 
+        {/* Contenido de tabs */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -380,89 +465,77 @@ export default function Resources() {
           >
             {activeTab === 'videos' && (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {resources.videos.map((v, i) => (
-                  <VideoCard key={v.id} video={v} index={i} />
-                ))}
+                {resources.videos.map((v, i) => <VideoCard key={v.id} video={v} index={i} />)}
               </div>
             )}
 
             {activeTab === 'studies' && (
               <div className="flex flex-col gap-4">
-                {resources.studies.map((s, i) => (
-                  <StudyCard key={s.id} study={s} index={i} />
-                ))}
+                {resources.studies.map((s, i) => <StudyCard key={s.id} study={s} index={i} />)}
                 <div className="mt-4 flex items-start gap-3 bg-trust/5 border border-trust/15 rounded-2xl p-5">
                   <Shield size={17} className="text-trust shrink-0 mt-0.5" />
                   <p className="text-sm text-mutedblue/80 leading-relaxed">
-                    Todas las investigaciones provienen de organismos internacionales reconocidos. Haz clic en cada tarjeta para acceder directamente al documento original.
+                    Todas las investigaciones provienen de organismos internacionales reconocidos.
                   </p>
                 </div>
               </div>
             )}
 
             {activeTab === 'liveData' && (
-              <div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-6">
-                  {resources.liveData.map((item, i) => (
-                    <LiveDataCard key={item.id} item={item} index={i} />
-                  ))}
-                </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-6">
+                {resources.liveData.map((item, i) => <LiveDataCard key={item.id} item={item} index={i} />)}
               </div>
             )}
           </motion.div>
         </AnimatePresence>
 
-        {/* --- NUEVA SECCIÓN: GUÍAS RÁPIDAS (REEMPLAZO DEL CTA ANTERIOR) --- */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mt-20 sm:mt-28 rounded-[2.5rem] bg-gradient-to-br from-white/[0.04] to-transparent border border-white/8 p-8 sm:p-12 relative overflow-hidden"
-        >
-          {/* Decoración visual */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-trust/10 blur-[80px] pointer-events-none" />
-          
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-7">
-              <div className="inline-flex items-center gap-2 text-trust text-[11px] font-bold uppercase tracking-widest mb-4">
-                <LayoutGrid size={13} /> Kit de herramientas
-              </div>
-              <h2 className="text-2xl sm:text-4xl font-display font-bold mb-4">
-                Material de apoyo para descarga inmediata
-              </h2>
-              <p className="text-mutedblue text-sm sm:text-base leading-relaxed max-w-xl">
-                Hemos preparado guías prácticas diseñadas para ser utilizadas en el aula o el hogar. 
-                Sin registros, sin correos, acceso directo a la prevención.
-              </p>
-            </div>
-            
-            <div className="lg:col-span-5 flex flex-col gap-3">
-              {[
-                { title: 'Guía de actuación inmediata', type: 'PDF • 1.2MB' },
-                { title: 'Protocolo de convivencia digital', type: 'PDF • 850KB' },
-                { title: 'Manual para padres y tutores', type: 'PDF • 2.4MB' }
-              ].map((doc, idx) => (
-                <button 
-                  key={idx}
-                  className="group flex items-center justify-between p-4 bg-white/[0.03] border border-white/5 rounded-2xl hover:bg-trust/10 hover:border-trust/30 transition-all duration-300"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center text-mutedblue group-hover:text-trust transition-colors">
-                      <Download size={18} />
-                    </div>
-                    <div className="text-left">
-                      <div className="text-sm font-bold text-softwhite group-hover:text-trust transition-colors">{doc.title}</div>
-                      <div className="text-[10px] font-semibold text-mutedblue/50 uppercase">{doc.type}</div>
-                    </div>
-                  </div>
-                  <ChevronRight size={16} className="text-white/20 group-hover:text-trust group-hover:translate-x-1 transition-all" />
-                </button>
-              ))}
-            </div>
-          </div>
-        </motion.div>
+        {/* ── SECCIÓN HEXÁGONOS ── */}
+        <section className="mt-20 sm:mt-32 md:mt-40 mb-16 sm:mb-20 relative">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-trust/5 blur-[120px] pointer-events-none rounded-full" />
 
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12 sm:mb-16 lg:mb-20 relative z-10"
+          >
+            <div className="inline-flex items-center gap-2 text-trust text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] mb-4 bg-trust/10 px-4 py-2 rounded-full border border-trust/20">
+              <LayoutGrid size={12} strokeWidth={3} /> Marco Sistémico de Prevención
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6">
+              Pilares de la <span className="text-trust">Resiliencia</span>
+            </h2>
+            <p className="text-mutedblue text-sm sm:text-base max-w-3xl mx-auto leading-relaxed px-2">
+              Basado en el modelo ecológico de la OMS, este diagrama representa cómo la evidencia
+              se transforma en un ecosistema de seguridad para los estudiantes.
+            </p>
+          </motion.div>
+
+          {/*
+            GRID DE HEXÁGONOS:
+            • Mobile (< sm): 2 columnas con hexágonos en tamaño normal
+            • sm → md: 3 columnas con más espacio
+            • md+: 3 columnas full con espaciado amplio
+            • Se ajusta el max-w para mejor legibilidad
+          */}
+          <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8 max-w-sm sm:max-w-2xl md:max-w-4xl lg:max-w-5xl mx-auto px-3 sm:px-4">
+            {hexagonData.map((item, index) => (
+              <InteractiveHexagon key={item.id} item={item} index={index} />
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 1 }}
+            className="mt-12 sm:mt-16 lg:mt-20 text-center"
+          >
+            <p className="text-[10px] sm:text-xs text-mutedblue/40 font-bold uppercase tracking-widest">
+              Actualización basada en informes UNESCO 2024
+            </p>
+          </motion.div>
+        </section>
       </div>
     </div>
   );
