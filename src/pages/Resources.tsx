@@ -499,9 +499,6 @@ export default function Resources() {
             viewport={{ once: true }}
             className="text-center mb-12 sm:mb-16 lg:mb-20 relative z-10"
           >
-            <div className="inline-flex items-center gap-2 text-trust text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] mb-4 bg-trust/10 px-4 py-2 rounded-full border border-trust/20">
-              <LayoutGrid size={12} strokeWidth={3} /> Marco Sistémico de Prevención
-            </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6">
               Pilares de la <span className="text-trust">Resiliencia</span>
             </h2>
@@ -531,9 +528,6 @@ export default function Resources() {
             transition={{ delay: 1 }}
             className="mt-12 sm:mt-16 lg:mt-20 text-center"
           >
-            <p className="text-[10px] sm:text-xs text-mutedblue/40 font-bold uppercase tracking-widest">
-              Actualización basada en informes UNESCO 2024
-            </p>
           </motion.div>
         </section>
       </div>
