@@ -259,7 +259,7 @@ export default function VictimRoute() {
         {/* Sidebar Lateral */}
         <div className="hidden lg:block w-72 min-h-screen border-r border-softwhite/5 p-8 sticky top-24 self-start">
           <Link to="/caminos" className="flex items-center gap-2 text-mutedblue hover:text-trust text-sm mb-10 transition-colors group">
-            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Volver atrás
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Volver
           </Link>
           <h3 className="font-display font-bold text-xl text-softwhite mb-8 tracking-tight">Centro de Apoyo</h3>
           <div className="space-y-3">

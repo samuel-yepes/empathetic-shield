@@ -201,7 +201,7 @@ export default function AggressorRoute() {
               to="/caminos"
               className="inline-flex items-center gap-2 text-mutedblue text-[10px] font-mono tracking-widest hover:text-trust transition-all py-2"
             >
-              <ArrowLeft className="w-4 h-4" /> VOLVER AL MAPA
+              <ArrowLeft className="w-4 h-4" /> VOLVER
             </Link>
           </div>
           <div className="mb-10">
