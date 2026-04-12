@@ -12,7 +12,8 @@ import scene5 from '../assets/scene-5-extortion.jpg';
 const witnessScenes = [
   {
     id: 1,
-    image: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcXp4cnphZndpYmFyeXlnaHlsYmxkZzJ4M3B6ZGR3ZXJ0YjRwY29iOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKo4S31EAI2jEAE/giphy.gif",
+    image: scene1,
+    title: 'El Pasillo',
     narration: 'En el pasillo, ves a un grupo rodeando a un compañero más pequeño. Le están quitando su mochila y se burlan de él.',
     options: [
       { text: 'Unirse a las burlas', impact: 'reir', score: -25 },
@@ -23,7 +24,8 @@ const witnessScenes = [
   },
   {
     id: 2,
-    image: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3ZtM253ZzByNnc0b3VsNzE4cXA4YnVyeGd1Z3ZmejR5N2F4cjNrMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/chy6D606Q2V6U/giphy.gif",
+    image: scene2,
+    title: 'Ciberbullying',
     narration: 'En el grupo de WhatsApp de la clase, empiezan a circular memes hirientes y fotos retocadas sobre una compañera.',
     options: [
       { text: 'Reenviar el mensaje a otros', impact: 'reir', score: -30 },
@@ -34,7 +36,8 @@ const witnessScenes = [
   },
   {
     id: 3,
-    image: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjkza2gwaHNyNmUzMXp6ZGF1dmFqZjh0dWx1MjdicGplNmN6c3ZtOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7aubgMBSU5d562Yg/giphy.gif",
+    image: scene3,
+    title: 'La Cafetería',
     narration: 'Estás almorzando y notas que tu grupo de amigos está ignorando totalmente a un compañero nuevo que intentó sentarse con ustedes.',
     options: [
       { text: 'Hacer bromas sobre el compañero', impact: 'reir', score: -20 },
@@ -45,7 +48,8 @@ const witnessScenes = [
   },
   {
     id: 4,
-    image: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWV4MDltdDJ1ZzR2bTdtYXJnaWJkbmZrbTV1NjYwOTUxaGp5ajN6OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26BkMxKHL3S70hQk0/giphy.gif",
+    image: scene4,
+    title: 'El Vestuario',
     narration: 'En el vestuario después de deportes, ves que le escondieron la ropa a alguien y lo están grabando mientras la busca desesperado.',
     options: [
       { text: 'Grabar también con tu celular', impact: 'reir', score: -35 },
@@ -56,7 +60,8 @@ const witnessScenes = [
   },
   {
     id: 5,
-    image: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHExdzBwdmt5cnAweGR5MHB1OHQyZXAwdnNxazB5MDU3MmtidGlqZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3vQYMlU8V8cO3w5O/giphy.gif",
+    image: scene5,
+    title: 'El Recreo',
     narration: 'Durante el recreo, en una zona apartada, ves que están empujando e intimidando a alguien para que les dé su dinero.',
     options: [
       { text: 'Alentar a los agresores', impact: 'reir', score: -40 },
