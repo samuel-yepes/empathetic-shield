@@ -2,12 +2,18 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAppStore } from '../store/useAppStore';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Shield, Award, ClipboardList, Zap, MessageCircle, EyeOff, UserPlus, Megaphone, Smile, Handshake, ChevronRight, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Shield, Award, ClipboardList, Zap, MessageCircle, EyeOff, UserPlus, Megaphone, Smile, Handshake, ChevronRight, CheckCircle2, AlertTriangle, Eye } from 'lucide-react';
+import scene1 from '../assets/scene-1-hallway.jpg';
+import scene2 from '../assets/scene-2-cyber.jpg';
+import scene3 from '../assets/scene-3-exclusion.jpg';
+import scene4 from '../assets/scene-4-locker.jpg';
+import scene5 from '../assets/scene-5-extortion.jpg';
 
 const witnessScenes = [
   {
     id: 1,
-    image: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcXp4cnphZndpYmFyeXlnaHlsYmxkZzJ4M3B6ZGR3ZXJ0YjRwY29iOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKo4S31EAI2jEAE/giphy.gif",
+    image: scene1,
+    title: 'El Pasillo',
     narration: 'En el pasillo, ves a un grupo rodeando a un compañero más pequeño. Le están quitando su mochila y se burlan de él.',
     options: [
       { text: 'Unirse a las burlas', impact: 'reir', score: -25 },
@@ -18,7 +24,8 @@ const witnessScenes = [
   },
   {
     id: 2,
-    image: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3ZtM253ZzByNnc0b3VsNzE4cXA4YnVyeGd1Z3ZmejR5N2F4cjNrMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/chy6D606Q2V6U/giphy.gif",
+    image: scene2,
+    title: 'Ciberbullying',
     narration: 'En el grupo de WhatsApp de la clase, empiezan a circular memes hirientes y fotos retocadas sobre una compañera.',
     options: [
       { text: 'Reenviar el mensaje a otros', impact: 'reir', score: -30 },
@@ -29,7 +36,8 @@ const witnessScenes = [
   },
   {
     id: 3,
-    image: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjkza2gwaHNyNmUzMXp6ZGF1dmFqZjh0dWx1MjdicGplNmN6c3ZtOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7aubgMBSU5d562Yg/giphy.gif",
+    image: scene3,
+    title: 'La Cafetería',
     narration: 'Estás almorzando y notas que tu grupo de amigos está ignorando totalmente a un compañero nuevo que intentó sentarse con ustedes.',
     options: [
       { text: 'Hacer bromas sobre el compañero', impact: 'reir', score: -20 },
@@ -40,7 +48,8 @@ const witnessScenes = [
   },
   {
     id: 4,
-    image: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWV4MDltdDJ1ZzR2bTdtYXJnaWJkbmZrbTV1NjYwOTUxaGp5ajN6OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26BkMxKHL3S70hQk0/giphy.gif",
+    image: scene4,
+    title: 'El Vestuario',
     narration: 'En el vestuario después de deportes, ves que le escondieron la ropa a alguien y lo están grabando mientras la busca desesperado.',
     options: [
       { text: 'Grabar también con tu celular', impact: 'reir', score: -35 },
@@ -51,7 +60,8 @@ const witnessScenes = [
   },
   {
     id: 5,
-    image: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHExdzBwdmt5cnAweGR5MHB1OHQyZXAwdnNxazB5MDU3MmtidGlqZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3vQYMlU8V8cO3w5O/giphy.gif",
+    image: scene5,
+    title: 'El Recreo',
     narration: 'Durante el recreo, en una zona apartada, ves que están empujando e intimidando a alguien para que les dé su dinero.',
     options: [
       { text: 'Alentar a los agresores', impact: 'reir', score: -40 },
@@ -238,43 +248,145 @@ export default function WitnessRoute() {
             {/* MODULO 0: SIMULADOR (Se mantiene lógica, solo ajuste visual menor) */}
             {activeModule === 0 && (
               <motion.div key="sim" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                <div className="mb-6">
-                  <h2 className="font-display font-bold text-2xl lg:text-3xl text-softwhite mb-1">Entrenamiento Real</h2>
-                  <p className="text-mutedblue text-sm">Escoge tu respuesta ante estas situaciones.</p>
+                {/* Header */}
+                <div className="mb-8">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-10 h-10 rounded-xl bg-trust/10 border border-trust/20 flex items-center justify-center">
+                      <Eye className="w-5 h-5 text-trust" />
+                    </div>
+                    <div>
+                      <h2 className="font-display font-bold text-2xl lg:text-3xl text-softwhite">Entrenamiento Real</h2>
+                      <p className="text-mutedblue text-sm">¿Qué harías tú en esta situación?</p>
+                    </div>
+                  </div>
+                  {sceneIndex < witnessScenes.length && (
+                    <div className="flex items-center gap-2 mt-4">
+                      {witnessScenes.map((_, i) => (
+                        <div key={i} className={`h-1.5 flex-1 rounded-full transition-all duration-500 ${
+                          i < sceneIndex ? 'bg-hope' : i === sceneIndex ? 'bg-trust' : 'bg-white/10'
+                        }`} />
+                      ))}
+                      <span className="text-mutedblue text-xs ml-2 font-mono">{sceneIndex + 1}/{witnessScenes.length}</span>
+                    </div>
+                  )}
                 </div>
 
                 {sceneIndex < witnessScenes.length ? (
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 glass-card">
-                      <img src={witnessScenes[sceneIndex].image} className="w-full h-full object-cover" alt="Simulación" />
-                      <div className="absolute bottom-0 p-4 bg-gradient-to-t from-midnight to-transparent w-full">
-                        <p className="text-softwhite text-sm leading-snug">{witnessScenes[sceneIndex].narration}</p>
-                      </div>
-                    </div>
-
-                    <div className="space-y-3">
-                      {chosenOption ? (
-                        <div className="glass-card p-6 border-hope/30 text-center rounded-2xl">
-                          <CheckCircle2 className="w-8 h-8 text-hope mx-auto mb-2" />
-                          <p className="text-softwhite text-sm">{chosenOption.text}</p>
+                  <div className="space-y-6">
+                    {/* Scene Image Card */}
+                    <motion.div
+                      key={witnessScenes[sceneIndex].id}
+                      initial={{ opacity: 0, scale: 0.97 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4 }}
+                      className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-trust/5"
+                    >
+                      <div className="relative aspect-[16/9] lg:aspect-[21/9]">
+                        <img
+                          src={witnessScenes[sceneIndex].image}
+                          className="w-full h-full object-cover"
+                          alt={witnessScenes[sceneIndex].title}
+                          loading="lazy"
+                          width={1024}
+                          height={576}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/60 to-transparent" />
+                        
+                        {/* Scene title badge */}
+                        <div className="absolute top-4 left-4">
+                          <span className="px-3 py-1.5 rounded-lg bg-midnight/80 backdrop-blur-md border border-white/10 text-xs font-bold text-trust uppercase tracking-wider flex items-center gap-1.5">
+                            <AlertTriangle className="w-3 h-3" />
+                            {witnessScenes[sceneIndex].title}
+                          </span>
                         </div>
+
+                        {/* Narration overlay */}
+                        <div className="absolute bottom-0 left-0 right-0 p-5 lg:p-6">
+                          <p className="text-softwhite text-sm lg:text-base leading-relaxed font-body max-w-2xl">
+                            {witnessScenes[sceneIndex].narration}
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
+
+                    {/* Options */}
+                    <AnimatePresence mode="wait">
+                      {chosenOption ? (
+                        <motion.div
+                          key="feedback"
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0 }}
+                          className={`rounded-2xl p-6 border text-center ${
+                            chosenOption.score > 0
+                              ? 'bg-hope/5 border-hope/20'
+                              : 'bg-warm/5 border-warm/20'
+                          }`}
+                        >
+                          <div className={`w-12 h-12 rounded-full mx-auto mb-3 flex items-center justify-center ${
+                            chosenOption.score > 0 ? 'bg-hope/10' : 'bg-warm/10'
+                          }`}>
+                            {chosenOption.score > 0
+                              ? <CheckCircle2 className="w-6 h-6 text-hope" />
+                              : <AlertTriangle className="w-6 h-6 text-warm" />
+                            }
+                          </div>
+                          <p className="text-softwhite font-body font-medium">{chosenOption.text}</p>
+                          <p className={`text-xs mt-2 font-mono ${chosenOption.score > 0 ? 'text-hope' : 'text-warm'}`}>
+                            {chosenOption.score > 0 ? `+${chosenOption.score}` : chosenOption.score} puntos de aliado
+                          </p>
+                        </motion.div>
                       ) : (
-                        witnessScenes[sceneIndex].options.map((opt, i) => (
-                          <button key={i} onClick={() => handleSceneChoice(opt)}
-                            className="w-full text-left p-4 rounded-xl border border-white/5 bg-softwhite/5 hover:bg-softwhite/10 transition-all text-sm text-softwhite flex items-center gap-3">
-                            <span className="w-6 h-6 rounded-lg bg-midnight flex items-center justify-center text-[10px] font-bold text-mutedblue border border-white/10">{i + 1}</span>
-                            {opt.text}
-                          </button>
-                        ))
+                        <motion.div
+                          key="options"
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="grid grid-cols-1 sm:grid-cols-2 gap-3"
+                        >
+                          {witnessScenes[sceneIndex].options.map((opt, i) => (
+                            <motion.button
+                              key={i}
+                              onClick={() => handleSceneChoice(opt)}
+                              whileHover={{ scale: 1.02, y: -2 }}
+                              whileTap={{ scale: 0.98 }}
+                              className="text-left p-4 rounded-xl border border-white/8 bg-white/[0.03] backdrop-blur-sm hover:bg-white/[0.07] hover:border-trust/30 transition-colors text-sm text-softwhite flex items-start gap-3 group"
+                            >
+                              <span className="flex-shrink-0 w-7 h-7 rounded-lg bg-midnight flex items-center justify-center text-[11px] font-bold text-mutedblue border border-white/10 group-hover:border-trust/30 group-hover:text-trust transition-colors">
+                                {i + 1}
+                              </span>
+                              <span className="flex items-center gap-2 pt-0.5">
+                                {getImpactIcon(opt.impact)}
+                                <span className="leading-snug">{opt.text}</span>
+                              </span>
+                            </motion.button>
+                          ))}
+                        </motion.div>
                       )}
-                    </div>
+                    </AnimatePresence>
                   </div>
                 ) : (
-                  <div className="glass-card p-10 text-center rounded-3xl border-hope/20">
-                    <Award className="w-12 h-12 text-hope mx-auto mb-4" />
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="glass-card p-10 text-center rounded-3xl border border-hope/20"
+                  >
+                    <div className="w-16 h-16 rounded-2xl bg-hope/10 mx-auto mb-4 flex items-center justify-center">
+                      <Award className="w-8 h-8 text-hope" />
+                    </div>
                     <h3 className="text-2xl font-display font-bold text-softwhite">Simulación Finalizada</h3>
-                    <p className="text-mutedblue text-sm mt-2">Nivel de Aliado: <span className="text-hope font-bold">{allyLevel}</span></p>
-                  </div>
+                    <p className="text-mutedblue text-sm mt-2 mb-4">Has completado las 5 situaciones.</p>
+                    <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-hope/10 border border-hope/20">
+                      <Shield className="w-4 h-4 text-hope" />
+                      <span className="text-hope font-mono font-bold text-lg">{allyLevel}</span>
+                      <span className="text-mutedblue text-xs">puntos de aliado</span>
+                    </div>
+                    <div className="mt-6">
+                      <button onClick={() => { setSceneIndex(0); setChosenOption(null); setSufferingDays(0); }}
+                        className="px-6 py-3 rounded-xl bg-trust/10 border border-trust/20 text-trust text-sm font-bold hover:bg-trust/20 transition-colors">
+                        Repetir Simulación
+                      </button>
+                    </div>
+                  </motion.div>
                 )}
               </motion.div>
             )}
