@@ -2,7 +2,12 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAppStore } from '../store/useAppStore';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Shield, Award, ClipboardList, Zap, MessageCircle, EyeOff, UserPlus, Megaphone, Smile, Handshake, ChevronRight, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Shield, Award, ClipboardList, Zap, MessageCircle, EyeOff, UserPlus, Megaphone, Smile, Handshake, ChevronRight, CheckCircle2, AlertTriangle, Eye } from 'lucide-react';
+import scene1 from '../assets/scene-1-hallway.jpg';
+import scene2 from '../assets/scene-2-cyber.jpg';
+import scene3 from '../assets/scene-3-exclusion.jpg';
+import scene4 from '../assets/scene-4-locker.jpg';
+import scene5 from '../assets/scene-5-extortion.jpg';
 
 const witnessScenes = [
   {
