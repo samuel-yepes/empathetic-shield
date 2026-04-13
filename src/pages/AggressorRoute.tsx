@@ -216,19 +216,59 @@ export default function AggressorRoute() {
               <motion.div key="sim" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="space-y-6">
                 {sceneIndex < scenes.length ? (
                   <div className="space-y-5">
-                    {/* Progress bar visual */}
-                    <div className="flex items-center gap-3">
-                      {scenes.map((_, i) => (
-                        <div key={i} className="flex-1 flex items-center gap-2">
-                          <motion.div
-                            className={`h-1.5 rounded-full flex-1 ${i < sceneIndex ? 'bg-trust' : i === sceneIndex ? 'bg-trust/60' : 'bg-white/10'}`}
-                            initial={false}
-                            animate={{ scaleX: i <= sceneIndex ? 1 : 0.3 }}
-                            style={{ originX: 0 }}
-                          />
+
+                    {/* Top bar: progress + reputation */}
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                      {/* Progress dots */}
+                      <div className="flex items-center gap-3 flex-1">
+                        {scenes.map((_, i) => (
+                          <div key={i} className="flex-1 flex items-center gap-2">
+                            <motion.div
+                              className={`h-1.5 rounded-full flex-1 ${i < sceneIndex ? 'bg-trust' : i === sceneIndex ? 'bg-trust/60' : 'bg-white/10'}`}
+                              initial={false}
+                              animate={{ scaleX: i <= sceneIndex ? 1 : 0.3 }}
+                              style={{ originX: 0 }}
+                            />
+                          </div>
+                        ))}
+                        <span className="text-mutedblue font-mono text-xs">{sceneIndex + 1}/{scenes.length}</span>
+                      </div>
+
+                      {/* Reputation widget inline */}
+                      <motion.div
+                        layout
+                        className="flex items-center gap-3 bg-white/[0.04] backdrop-blur-md border border-white/10 rounded-2xl px-4 py-2.5 sm:min-w-[200px]"
+                      >
+                        <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
+                          reputationScore >= 70 ? 'bg-hope/20' : reputationScore >= 40 ? 'bg-yellow-500/20' : 'bg-warm/20'
+                        }`}>
+                          <ShieldAlert className={`w-4 h-4 ${
+                            reputationScore >= 70 ? 'text-hope' : reputationScore >= 40 ? 'text-yellow-400' : 'text-warm'
+                          }`} />
                         </div>
-                      ))}
-                      <span className="text-mutedblue font-mono text-xs">{sceneIndex + 1}/{scenes.length}</span>
+                        <div className="flex-1 min-w-0">
+                          <span className="text-[10px] font-mono text-mutedblue tracking-widest uppercase block">Reputación</span>
+                          <div className="relative w-full h-2 bg-white/10 rounded-full overflow-hidden mt-1">
+                            <motion.div
+                              className="h-full rounded-full"
+                              animate={{
+                                width: `${Math.max(4, reputationScore)}%`,
+                                backgroundColor:
+                                  reputationScore >= 70 ? '#00C896' : reputationScore >= 40 ? '#F59E0B' : '#EF4444'
+                              }}
+                              transition={{ type: 'spring', stiffness: 120, damping: 20 }}
+                            />
+                          </div>
+                        </div>
+                        <motion.span
+                          key={reputationScore}
+                          initial={{ scale: 1.4, color: reputationScore >= 50 ? '#00C896' : '#EF4444' }}
+                          animate={{ scale: 1, color: '#F0F4FF' }}
+                          className="text-sm font-bold font-mono w-9 text-right"
+                        >
+                          {Math.max(0, reputationScore)}
+                        </motion.span>
+                      </motion.div>
                     </div>
 
                     {/* Scene image card - hero style */}
