@@ -245,42 +245,191 @@ export default function AggressorRoute() {
         <main className="flex-1 p-5 lg:p-10 max-w-5xl mx-auto w-full">
           <AnimatePresence mode="wait">
 
-            {/* MODULO 0: SIMULADOR */}
+            {/* MODULO 0: SIMULADOR VISUAL */}
             {activeModule === 0 && (
               <motion.div key="sim" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="space-y-6">
                 {sceneIndex < scenes.length ? (
-                  <div className="space-y-6">
-                    <div>
-                      <span className="text-trust font-mono text-[11px] tracking-[0.5em] uppercase">Escena {sceneIndex + 1} de 3</span>
-                      <h2 className="text-3xl lg:text-4xl font-black mt-2 leading-tight">{scenes[sceneIndex].title}</h2>
-                    </div>
-                    <div className="glass-card rounded-[2.5rem] p-8 lg:p-12 bg-white/[0.03] border border-white/10 relative overflow-hidden">
-                      <div className="absolute top-0 left-0 w-1 h-full bg-trust/30" />
-                      <p className="text-xl lg:text-2xl leading-relaxed text-softwhite/90 font-light italic">"{scenes[sceneIndex].narration}"</p>
-                    </div>
-                    {chosenOption !== null && (
-                      <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
-                        className={`rounded-2xl p-6 border ${scenes[sceneIndex].options[chosenOption].type === 'agresion' ? 'bg-warm/10 border-warm/20 text-warm' : 'bg-hope/10 border-hope/20 text-hope'}`}>
-                        <p className="text-softwhite/80 text-lg">"{scenes[sceneIndex].options[chosenOption].reaction}"</p>
-                      </motion.div>
-                    )}
-                    <div className="grid gap-3">
-                      {scenes[sceneIndex].options.map((opt, oi) => (
-                        <button key={oi} disabled={chosenOption !== null} onClick={() => handleChoice(oi)}
-                          className={`w-full text-left p-6 rounded-2xl border-2 transition-all ${chosenOption === oi ? (opt.type === 'agresion' ? 'bg-warm text-midnight' : 'bg-hope text-midnight') : 'bg-white/5 border-white/10 hover:border-trust/50'}`}>
-                          {opt.text}
-                        </button>
+                  <div className="space-y-5">
+                    {/* Progress bar visual */}
+                    <div className="flex items-center gap-3">
+                      {scenes.map((_, i) => (
+                        <div key={i} className="flex-1 flex items-center gap-2">
+                          <motion.div
+                            className={`h-1.5 rounded-full flex-1 ${i < sceneIndex ? 'bg-trust' : i === sceneIndex ? 'bg-trust/60' : 'bg-white/10'}`}
+                            initial={false}
+                            animate={{ scaleX: i <= sceneIndex ? 1 : 0.3 }}
+                            style={{ originX: 0 }}
+                          />
+                        </div>
                       ))}
+                      <span className="text-mutedblue font-mono text-xs">{sceneIndex + 1}/{scenes.length}</span>
+                    </div>
+
+                    {/* Scene image card - hero style */}
+                    <motion.div
+                      key={sceneIndex}
+                      initial={{ opacity: 0, scale: 0.97 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5 }}
+                      className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl"
+                    >
+                      {/* Image */}
+                      <div className="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-[21/9]">
+                        <img
+                          src={sceneImages[sceneIndex]}
+                          alt={scenes[sceneIndex].title}
+                          className="w-full h-full object-cover"
+                        />
+                        {/* Gradient overlays */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/60 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-r from-midnight/40 to-transparent" />
+
+                        {/* Location badge */}
+                        <motion.div
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.3 }}
+                          className="absolute top-4 left-4 flex items-center gap-2 bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10"
+                        >
+                          <div className="w-2 h-2 bg-trust rounded-full animate-pulse" />
+                          <span className="text-[11px] font-mono text-softwhite/80 tracking-wide">{scenes[sceneIndex].location}</span>
+                        </motion.div>
+
+                        {/* Title + narration over image */}
+                        <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8">
+                          <motion.h2
+                            key={`title-${sceneIndex}`}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            className="text-2xl sm:text-3xl lg:text-4xl font-black mb-3 leading-tight"
+                          >
+                            {scenes[sceneIndex].title}
+                          </motion.h2>
+                          <motion.p
+                            key={`narr-${sceneIndex}`}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 0.2 }}
+                            className="text-sm sm:text-base lg:text-lg text-softwhite/80 font-light leading-relaxed max-w-2xl"
+                          >
+                            {scenes[sceneIndex].narration}
+                          </motion.p>
+                        </div>
+                      </div>
+                    </motion.div>
+
+                    {/* Reaction feedback */}
+                    <AnimatePresence>
+                      {chosenOption !== null && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          className={`rounded-2xl p-5 sm:p-6 border flex items-start gap-4 ${
+                            scenes[sceneIndex].options[chosenOption].type === 'agresion'
+                              ? 'bg-warm/10 border-warm/20'
+                              : scenes[sceneIndex].options[chosenOption].type === 'empatia'
+                                ? 'bg-hope/10 border-hope/20'
+                                : 'bg-white/5 border-white/10'
+                          }`}
+                        >
+                          <div className={`p-2 rounded-xl shrink-0 ${
+                            scenes[sceneIndex].options[chosenOption].type === 'agresion' ? 'bg-warm/20' : scenes[sceneIndex].options[chosenOption].type === 'empatia' ? 'bg-hope/20' : 'bg-white/10'
+                          }`}>
+                            {scenes[sceneIndex].options[chosenOption].type === 'agresion' ? <XCircle className="w-5 h-5 text-warm" /> :
+                             scenes[sceneIndex].options[chosenOption].type === 'empatia' ? <CheckCircle2 className="w-5 h-5 text-hope" /> :
+                             <MinusCircle className="w-5 h-5 text-mutedblue" />}
+                          </div>
+                          <div>
+                            <span className={`text-xs font-mono uppercase tracking-widest ${
+                              scenes[sceneIndex].options[chosenOption].type === 'agresion' ? 'text-warm' : scenes[sceneIndex].options[chosenOption].type === 'empatia' ? 'text-hope' : 'text-mutedblue'
+                            }`}>{scenes[sceneIndex].options[chosenOption].emotion}</span>
+                            <p className="text-softwhite/80 mt-1 text-sm sm:text-base">"{scenes[sceneIndex].options[chosenOption].reaction}"</p>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                    {/* Decision options */}
+                    <div className="space-y-2.5">
+                      <p className="text-[11px] text-mutedblue font-mono tracking-widest uppercase">¿Qué decides hacer?</p>
+                      <div className="grid gap-2.5 sm:gap-3">
+                        {scenes[sceneIndex].options.map((opt, oi) => {
+                          const isChosen = chosenOption === oi;
+                          const isAgresion = opt.type === 'agresion';
+                          const isEmpatia = opt.type === 'empatia';
+                          return (
+                            <motion.button
+                              key={oi}
+                              disabled={chosenOption !== null}
+                              onClick={() => handleChoice(oi)}
+                              whileHover={chosenOption === null ? { scale: 1.01, x: 4 } : {}}
+                              whileTap={chosenOption === null ? { scale: 0.98 } : {}}
+                              className={`w-full text-left p-4 sm:p-5 rounded-2xl border transition-all flex items-center gap-4 group ${
+                                isChosen
+                                  ? isAgresion ? 'bg-warm/20 border-warm/40 shadow-lg shadow-warm/10' : isEmpatia ? 'bg-hope/20 border-hope/40 shadow-lg shadow-hope/10' : 'bg-white/10 border-white/20'
+                                  : chosenOption !== null
+                                    ? 'bg-white/[0.02] border-white/5 opacity-40'
+                                    : 'bg-white/[0.03] border-white/10 hover:border-trust/40 hover:bg-white/[0.06]'
+                              }`}
+                            >
+                              <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 text-sm font-bold transition-all ${
+                                isChosen
+                                  ? isAgresion ? 'bg-warm text-midnight' : isEmpatia ? 'bg-hope text-midnight' : 'bg-white/20 text-softwhite'
+                                  : 'bg-white/10 text-mutedblue group-hover:bg-trust/20 group-hover:text-trust'
+                              }`}>
+                                {String.fromCharCode(65 + oi)}
+                              </div>
+                              <span className="text-sm sm:text-base">{opt.text}</span>
+                              {chosenOption === null && (
+                                <ChevronRight className="w-4 h-4 ml-auto text-mutedblue opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
+                              )}
+                            </motion.button>
+                          );
+                        })}
+                      </div>
                     </div>
                   </div>
                 ) : (
-                  <div className="text-center py-10">
-                    <Trophy size={60} className="text-trust mx-auto mb-6" />
-                    <h3 className="text-3xl font-black mb-4 uppercase tracking-tight">{analysis?.title}</h3>
-                    <p className="text-mutedblue text-lg mb-8">{analysis?.text}</p>
-                    <button onClick={() => { setSceneIndex(0); setHistory([]); updateReputation(-reputationScore); }}
-                      className="px-10 py-4 bg-trust text-midnight font-black rounded-2xl">REINICIAR</button>
-                  </div>
+                  /* Results screen */
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="text-center py-8 sm:py-14"
+                  >
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: 'spring', stiffness: 200, delay: 0.2 }}
+                      className="w-24 h-24 rounded-full bg-trust/10 border border-trust/20 flex items-center justify-center mx-auto mb-6"
+                    >
+                      <Trophy size={40} className="text-trust" />
+                    </motion.div>
+                    <h3 className="text-2xl sm:text-3xl font-black mb-3 uppercase tracking-tight">{analysis?.title}</h3>
+                    <p className="text-mutedblue text-base sm:text-lg mb-3 max-w-md mx-auto">{analysis?.text}</p>
+                    <p className="text-trust/80 text-sm mb-8 italic">{analysis?.advice}</p>
+
+                    {/* Decision summary */}
+                    <div className="flex justify-center gap-3 mb-8">
+                      {history.map((h, i) => (
+                        <div key={i} className={`w-10 h-10 rounded-xl flex items-center justify-center ${
+                          h.type === 'agresion' ? 'bg-warm/20 border border-warm/30' : h.type === 'empatia' ? 'bg-hope/20 border border-hope/30' : 'bg-white/10 border border-white/10'
+                        }`}>
+                          {h.type === 'agresion' ? <XCircle className="w-4 h-4 text-warm" /> : h.type === 'empatia' ? <CheckCircle2 className="w-4 h-4 text-hope" /> : <MinusCircle className="w-4 h-4 text-mutedblue" />}
+                        </div>
+                      ))}
+                    </div>
+
+                    <motion.button
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      onClick={() => { setSceneIndex(0); setHistory([]); updateReputation(-reputationScore); }}
+                      className="inline-flex items-center gap-2 px-8 py-4 bg-trust text-midnight font-black rounded-2xl shadow-lg shadow-trust/20"
+                    >
+                      <RotateCcw className="w-4 h-4" />
+                      REINICIAR
+                    </motion.button>
+                  </motion.div>
                 )}
               </motion.div>
             )}
