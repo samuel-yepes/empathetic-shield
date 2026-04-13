@@ -181,22 +181,7 @@ export default function AggressorRoute() {
       {/* HEADER MÓVIL */}
       <header className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-midnight/80 backdrop-blur-xl border-b border-white/5 px-6 py-4 flex justify-between items-center">
         <Link to="/caminos" className="text-mutedblue"><ArrowLeft size={22} /></Link>
-        <div className="relative w-24 h-3 bg-white/10 rounded-full overflow-hidden">
-          <motion.div
-            className="h-full flex items-center justify-center text-[9px] font-bold text-black"
-            animate={{
-              width: `${Math.max(0, reputationScore)}%`,
-              backgroundColor:
-                reputationScore >= 70
-                  ? '#00C896'   // verde
-                  : reputationScore >= 40
-                    ? '#F59E0B'   // naranja
-                    : '#EF4444'   // rojo
-            }}
-          >
-            {Math.max(0, reputationScore)}%
-          </motion.div>
-        </div>
+        <span className="text-xs font-mono text-mutedblue tracking-widest uppercase">Simulador</span>
         <div className="w-6" />
       </header>
 
@@ -211,25 +196,6 @@ export default function AggressorRoute() {
             >
               <ArrowLeft className="w-4 h-4" /> VOLVER
             </Link>
-          </div>
-          <div className="mb-10">
-            <h3 className="text-[10px] text-mutedblue font-mono tracking-[0.3em] mb-4 uppercase">Reputación</h3>
-            <div className="relative w-full h-4 bg-white/5 rounded-full overflow-hidden">
-              <motion.div
-                className="h-full flex items-center justify-center text-[10px] font-bold text-black"
-                animate={{
-                  width: `${Math.max(0, reputationScore)}%`,
-                  backgroundColor:
-                    reputationScore >= 70
-                      ? '#00C896'   // verde
-                      : reputationScore >= 40
-                        ? '#F59E0B'   // naranja
-                        : '#EF4444'   // rojo
-                }}
-              >
-                {Math.max(0, reputationScore)}%
-              </motion.div>
-            </div>
           </div>
           <nav className="space-y-2">
             {modules.map((mod, i) => (
@@ -250,19 +216,59 @@ export default function AggressorRoute() {
               <motion.div key="sim" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="space-y-6">
                 {sceneIndex < scenes.length ? (
                   <div className="space-y-5">
-                    {/* Progress bar visual */}
-                    <div className="flex items-center gap-3">
-                      {scenes.map((_, i) => (
-                        <div key={i} className="flex-1 flex items-center gap-2">
-                          <motion.div
-                            className={`h-1.5 rounded-full flex-1 ${i < sceneIndex ? 'bg-trust' : i === sceneIndex ? 'bg-trust/60' : 'bg-white/10'}`}
-                            initial={false}
-                            animate={{ scaleX: i <= sceneIndex ? 1 : 0.3 }}
-                            style={{ originX: 0 }}
-                          />
+
+                    {/* Top bar: progress + reputation */}
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                      {/* Progress dots */}
+                      <div className="flex items-center gap-3 flex-1">
+                        {scenes.map((_, i) => (
+                          <div key={i} className="flex-1 flex items-center gap-2">
+                            <motion.div
+                              className={`h-1.5 rounded-full flex-1 ${i < sceneIndex ? 'bg-trust' : i === sceneIndex ? 'bg-trust/60' : 'bg-white/10'}`}
+                              initial={false}
+                              animate={{ scaleX: i <= sceneIndex ? 1 : 0.3 }}
+                              style={{ originX: 0 }}
+                            />
+                          </div>
+                        ))}
+                        <span className="text-mutedblue font-mono text-xs">{sceneIndex + 1}/{scenes.length}</span>
+                      </div>
+
+                      {/* Reputation widget inline */}
+                      <motion.div
+                        layout
+                        className="flex items-center gap-3 bg-white/[0.04] backdrop-blur-md border border-white/10 rounded-2xl px-4 py-2.5 sm:min-w-[200px]"
+                      >
+                        <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${
+                          reputationScore >= 70 ? 'bg-hope/20' : reputationScore >= 40 ? 'bg-yellow-500/20' : 'bg-warm/20'
+                        }`}>
+                          <ShieldAlert className={`w-4 h-4 ${
+                            reputationScore >= 70 ? 'text-hope' : reputationScore >= 40 ? 'text-yellow-400' : 'text-warm'
+                          }`} />
                         </div>
-                      ))}
-                      <span className="text-mutedblue font-mono text-xs">{sceneIndex + 1}/{scenes.length}</span>
+                        <div className="flex-1 min-w-0">
+                          <span className="text-[10px] font-mono text-mutedblue tracking-widest uppercase block">Reputación</span>
+                          <div className="relative w-full h-2 bg-white/10 rounded-full overflow-hidden mt-1">
+                            <motion.div
+                              className="h-full rounded-full"
+                              animate={{
+                                width: `${Math.max(4, reputationScore)}%`,
+                                backgroundColor:
+                                  reputationScore >= 70 ? '#00C896' : reputationScore >= 40 ? '#F59E0B' : '#EF4444'
+                              }}
+                              transition={{ type: 'spring', stiffness: 120, damping: 20 }}
+                            />
+                          </div>
+                        </div>
+                        <motion.span
+                          key={reputationScore}
+                          initial={{ scale: 1.4, color: reputationScore >= 50 ? '#00C896' : '#EF4444' }}
+                          animate={{ scale: 1, color: '#F0F4FF' }}
+                          className="text-sm font-bold font-mono w-9 text-right"
+                        >
+                          {Math.max(0, reputationScore)}
+                        </motion.span>
+                      </motion.div>
                     </div>
 
                     {/* Scene image card - hero style */}
@@ -395,22 +401,52 @@ export default function AggressorRoute() {
                   <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="text-center py-8 sm:py-14"
+                    className="text-center py-8 sm:py-14 space-y-8"
                   >
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ type: 'spring', stiffness: 200, delay: 0.2 }}
-                      className="w-24 h-24 rounded-full bg-trust/10 border border-trust/20 flex items-center justify-center mx-auto mb-6"
+                      className="w-24 h-24 rounded-full bg-trust/10 border border-trust/20 flex items-center justify-center mx-auto"
                     >
                       <Trophy size={40} className="text-trust" />
                     </motion.div>
-                    <h3 className="text-2xl sm:text-3xl font-black mb-3 uppercase tracking-tight">{analysis?.title}</h3>
-                    <p className="text-mutedblue text-base sm:text-lg mb-3 max-w-md mx-auto">{analysis?.text}</p>
-                    <p className="text-trust/80 text-sm mb-8 italic">{analysis?.advice}</p>
+                    <div>
+                      <h3 className="text-2xl sm:text-3xl font-black mb-3 uppercase tracking-tight">{analysis?.title}</h3>
+                      <p className="text-mutedblue text-base sm:text-lg mb-3 max-w-md mx-auto">{analysis?.text}</p>
+                    <p className="text-trust/80 text-sm italic">{analysis?.advice}</p>
+                    </div>
+
+                    {/* Final reputation card */}
+                    <div className="inline-flex items-center gap-4 bg-white/[0.04] backdrop-blur-md border border-white/10 rounded-2xl px-6 py-4">
+                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
+                        reputationScore >= 70 ? 'bg-hope/20' : reputationScore >= 40 ? 'bg-yellow-500/20' : 'bg-warm/20'
+                      }`}>
+                        <ShieldAlert className={`w-6 h-6 ${
+                          reputationScore >= 70 ? 'text-hope' : reputationScore >= 40 ? 'text-yellow-400' : 'text-warm'
+                        }`} />
+                      </div>
+                      <div className="text-left">
+                        <span className="text-[10px] font-mono text-mutedblue tracking-widest uppercase block">Reputación Final</span>
+                        <div className="flex items-center gap-3 mt-1">
+                          <div className="w-28 h-2.5 bg-white/10 rounded-full overflow-hidden">
+                            <motion.div
+                              className="h-full rounded-full"
+                              initial={{ width: 0 }}
+                              animate={{
+                                width: `${Math.max(4, reputationScore)}%`,
+                                backgroundColor: reputationScore >= 70 ? '#00C896' : reputationScore >= 40 ? '#F59E0B' : '#EF4444'
+                              }}
+                              transition={{ duration: 1, delay: 0.5 }}
+                            />
+                          </div>
+                          <span className="text-lg font-bold font-mono">{Math.max(0, reputationScore)}</span>
+                        </div>
+                      </div>
+                    </div>
 
                     {/* Decision summary */}
-                    <div className="flex justify-center gap-3 mb-8">
+                    <div className="flex justify-center gap-3">
                       {history.map((h, i) => (
                         <div key={i} className={`w-10 h-10 rounded-xl flex items-center justify-center ${
                           h.type === 'agresion' ? 'bg-warm/20 border border-warm/30' : h.type === 'empatia' ? 'bg-hope/20 border border-hope/30' : 'bg-white/10 border border-white/10'
