@@ -22,7 +22,7 @@ export default function HeroSection() {
             <span className="text-softwhite">Entender el Bullying</span>
             <br />
             <span className="relative inline-block text-trust">
-              es el Primer Paso.
+              es el Primer Paso
               <motion.span
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
