@@ -12,10 +12,12 @@ import aggressorScene2 from '../assets/aggressor-scene-2.jpg';
 import aggressorScene3 from '../assets/aggressor-scene-3.jpg';
 
 // --- CONFIGURACIÓN DE DATOS ---
+const sceneImages = [aggressorScene1, aggressorScene2, aggressorScene3];
 const scenes = [
   {
     id: 1,
     title: "El Receso",
+    location: "Patio de la escuela — 12:30 PM",
     narration: 'Es tu primer día. En el recreo, ves a un chico más pequeño solo. Tus nuevos "amigos" te sugieren que sería gracioso quitarle su almuerzo.',
     options: [
       { text: 'Le quitas el almuerzo para impresionar al grupo', score: -15, type: 'agresion', reaction: 'El chico baja la mirada. Sus ojos se llenan de lágrimas.', emotion: 'Tristeza profunda' },
@@ -26,6 +28,7 @@ const scenes = [
   {
     id: 2,
     title: "Trabajo en Equipo",
+    location: "Salón de clases — 10:15 AM",
     narration: 'En clase, notas que siempre excluyen a la misma compañera. Tu grupo dice que "no encaja" y no la quieren.',
     options: [
       { text: 'Dices "nadie la quiere aquí" en voz alta', score: -20, type: 'agresion', reaction: 'Ella escucha y pide ir al baño. No regresa en toda la clase.', emotion: 'Humillación' },
@@ -36,6 +39,7 @@ const scenes = [
   {
     id: 3,
     title: "El Grupo de Chat",
+    location: "Tu habitación — 9:45 PM",
     narration: 'Te invitan a un grupo de chat creado solo para burlarse de un compañero. Ya hay 15 personas publicando memes.',
     options: [
       { text: 'Te unes y envías un meme de burla', score: -25, type: 'agresion', reaction: 'El compañero se entera. Deja de ir a clase una semana.', emotion: 'Daño irreversible' },
