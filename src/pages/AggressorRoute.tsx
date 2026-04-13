@@ -55,12 +55,16 @@ const comicPanels = {
     'No pensaba en cómo se sentían. Solo pensaba en mí.',
     'Un día me vi en un espejo y no me gustó lo que vi.',
     'El poder que sentía era falso. Estaba tan asustado como ellos.',
+    "Repetía en otros el dolor que yo sentía en casa; era un ciclo que no sabía cómo romper.",
+    "Creía que para ser fuerte debía hacer a otros débiles, pero la verdadera fuerza era pedir perdón."
   ],
   victima: [
     'Cada mañana sentía un nudo en el estómago. No quería ir a la escuela.',
     'Pensaba que algo estaba mal conmigo. Que yo era el problema.',
     'El silencio era lo peor. Nadie preguntaba cómo estaba.',
     'Un día alguien me tendió la mano. Solo eso cambió todo.',
+    "Aprendí a hacerme invisible, esperando que si no me veían, las palabras dejarían de herir.",
+    "Sanar no fue olvidar lo que pasó, sino entender que su odio no definía quién soy yo."
   ],
 };
 
@@ -170,8 +174,8 @@ export default function AggressorRoute() {
   }, [history]);
 
   const modules = [
-    { icon: Brain, label: 'Jugar' },
     { icon: Users, label: 'Miradas' },
+    { icon: Brain, label: 'Jugar' },
     { icon: MessageCircle, label: 'Maya' },
   ];
 
@@ -212,7 +216,7 @@ export default function AggressorRoute() {
           <AnimatePresence mode="wait">
 
             {/* MODULO 0: SIMULADOR VISUAL */}
-            {activeModule === 0 && (
+            {activeModule === 1 && (
               <motion.div key="sim" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="space-y-6">
                 {sceneIndex < scenes.length ? (
                   <div className="space-y-5">
@@ -471,7 +475,7 @@ export default function AggressorRoute() {
             )}
 
             {/* MODULO 1: PERSPECTIVAS */}
-            {activeModule === 1 && (
+            {activeModule === 0 && (
               <motion.div key="persp" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-8">
                 <div className="flex p-1 bg-white/5 rounded-2xl">
                   {['agresor', 'victima'].map((p) => (
