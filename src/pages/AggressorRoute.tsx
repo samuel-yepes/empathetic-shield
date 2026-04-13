@@ -197,25 +197,6 @@ export default function AggressorRoute() {
               <ArrowLeft className="w-4 h-4" /> VOLVER
             </Link>
           </div>
-          <div className="mb-10">
-            <h3 className="text-[10px] text-mutedblue font-mono tracking-[0.3em] mb-4 uppercase">Reputación</h3>
-            <div className="relative w-full h-4 bg-white/5 rounded-full overflow-hidden">
-              <motion.div
-                className="h-full flex items-center justify-center text-[10px] font-bold text-black"
-                animate={{
-                  width: `${Math.max(0, reputationScore)}%`,
-                  backgroundColor:
-                    reputationScore >= 70
-                      ? '#00C896'   // verde
-                      : reputationScore >= 40
-                        ? '#F59E0B'   // naranja
-                        : '#EF4444'   // rojo
-                }}
-              >
-                {Math.max(0, reputationScore)}%
-              </motion.div>
-            </div>
-          </div>
           <nav className="space-y-2">
             {modules.map((mod, i) => (
               <button key={i} onClick={() => setActiveModule(i)}
