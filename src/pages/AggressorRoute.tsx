@@ -4,8 +4,12 @@ import { useAppStore } from '../store/useAppStore';
 import { Link } from 'react-router-dom';
 import {
   ArrowLeft, MessageCircle, Users, Trophy, AlertCircle,
-  Brain, Send, Bot, Info, Sparkles, Heart, ShieldAlert
+  Brain, Send, Bot, Info, Sparkles, Heart, ShieldAlert,
+  CheckCircle2, XCircle, MinusCircle, RotateCcw, ChevronRight
 } from 'lucide-react';
+import aggressorScene1 from '../assets/aggressor-scene-1.jpg';
+import aggressorScene2 from '../assets/aggressor-scene-2.jpg';
+import aggressorScene3 from '../assets/aggressor-scene-3.jpg';
 
 // --- CONFIGURACIÓN DE DATOS ---
 const scenes = [
