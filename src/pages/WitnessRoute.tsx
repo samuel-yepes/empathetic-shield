@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAppStore } from '../store/useAppStore';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Shield, Award, ClipboardList, Zap, MessageCircle, EyeOff, UserPlus, Megaphone, Smile, Handshake, ChevronRight, CheckCircle2, AlertTriangle, Eye } from 'lucide-react';
+import { ArrowLeft, Shield, Award, ClipboardList, Zap, MessageCircle, EyeOff, UserPlus, Megaphone, Smile, Handshake, ChevronRight, CheckCircle2, Eye } from 'lucide-react';
 
 // Assets
 import scene1 from '../assets/scene-1-hallway.jpg';
@@ -215,7 +215,7 @@ export default function WitnessRoute() {
   return (
     <div className="min-h-screen bg-midnight pt-24">
       <div className="flex">
-        {/* Sidebar */}
+        {/* Sidebar (PC únicamente) */}
         <div className="hidden lg:block w-72 min-h-screen border-r border-softwhite/5 p-6 sticky top-24 self-start">
           <Link to="/caminos" className="flex items-center gap-2 text-mutedblue hover:text-trust text-sm mb-8 transition-colors">
             <ArrowLeft className="w-4 h-4" /> Volver
@@ -234,26 +234,49 @@ export default function WitnessRoute() {
         </div>
 
         <div className="flex-1 p-4 lg:p-10 max-w-4xl pb-24 lg:pb-10 mx-auto">
+          
+          {/* NAVEGACIÓN MÓVIL (Aparece solo en pantallas pequeñas) */}
+          <div className="lg:hidden flex flex-col gap-4 mb-8">
+            <Link to="/caminos" className="flex items-center gap-2 text-mutedblue text-sm">
+              <ArrowLeft className="w-4 h-4" /> Volver a Caminos
+            </Link>
+            <div className="flex gap-2">
+              {modules.map((mod, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveModule(i)}
+                  className={`flex-1 flex items-center justify-center gap-2 p-3 rounded-xl text-sm font-bold transition-all ${
+                    activeModule === i 
+                      ? 'bg-hope text-midnight shadow-lg shadow-hope/20' 
+                      : 'bg-white/5 text-softwhite border border-white/10'
+                  }`}
+                >
+                  <mod.icon className="w-4 h-4" />
+                  {mod.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <AnimatePresence mode="wait">
-            
-            {/* SIMULADOR */}
+            {/* SECCIÓN 0: SIMULADOR */}
             {activeModule === 0 && (
-              <motion.div key="sim" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+              <motion.div key="sim" initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 10 }}>
                 {!isSimFinished ? (
                   <div className="space-y-6">
                     <div className="flex items-center justify-between mb-4">
                         <h2 className="font-display font-bold text-2xl text-softwhite flex items-center gap-3">
-                            <Eye className="text-trust" /> Entrenamiento de Campo
+                            <Eye className="text-trust" /> Entrenamiento
                         </h2>
                         <span className="text-mutedblue font-mono text-sm">{sceneIndex + 1} / {witnessScenes.length}</span>
                     </div>
 
-                    <motion.div key={witnessScenes[sceneIndex].id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="relative rounded-2xl overflow-hidden border border-white/10">
-                      <div className="relative aspect-video">
+                    <motion.div key={witnessScenes[sceneIndex].id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                      <div className="relative aspect-video sm:aspect-auto sm:h-[400px]">
                         <img src={witnessScenes[sceneIndex].image} className="w-full h-full object-cover" alt="Situación" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-midnight via-transparent" />
-                        <div className="absolute bottom-0 p-6">
-                          <p className="text-softwhite text-lg leading-snug">{witnessScenes[sceneIndex].narration}</p>
+                        <div className="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/20 to-transparent" />
+                        <div className="absolute bottom-0 p-4 sm:p-8">
+                          <p className="text-softwhite text-lg sm:text-xl leading-snug font-medium">{witnessScenes[sceneIndex].narration}</p>
                         </div>
                       </div>
                     </motion.div>
@@ -266,27 +289,27 @@ export default function WitnessRoute() {
                             ${chosenOption === opt ? 'border-hope bg-hope/10' : 'border-white/10 bg-white/5 hover:bg-white/10'}
                             ${chosenOption && chosenOption !== opt ? 'opacity-40' : 'opacity-100'}`}>
                           {getImpactIcon(opt.impact)}
-                          <span className="text-softwhite text-sm">{opt.text}</span>
+                          <span className="text-softwhite text-sm sm:text-base">{opt.text}</span>
                         </button>
                       ))}
                     </div>
                   </div>
                 ) : (
-                  <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="glass-card p-10 text-center rounded-3xl border border-white/10">
+                  <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="glass-card p-6 sm:p-12 text-center rounded-3xl border border-white/10">
                     <Award className="w-16 h-16 text-hope mx-auto mb-6" />
-                    <h3 className={`text-3xl font-display font-bold mb-2 ${getSimFinalMessage().color}`}>
+                    <h3 className={`text-2xl sm:text-4xl font-display font-bold mb-4 ${getSimFinalMessage().color}`}>
                         {getSimFinalMessage().title}
                     </h3>
-                    <p className="text-softwhite/70 text-lg leading-relaxed max-w-lg mx-auto mb-8">
+                    <p className="text-softwhite/70 text-base sm:text-lg leading-relaxed max-w-lg mx-auto mb-8">
                         {getSimFinalMessage().msg}
                     </p>
-                    <div className="flex gap-4 justify-center">
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <button onClick={() => { setIsSimFinished(false); setSceneIndex(0); setSimAnswers([]); }}
-                          className="px-6 py-3 rounded-xl bg-white/10 text-softwhite font-bold hover:bg-white/20 transition-all">
+                          className="px-6 py-4 rounded-xl bg-white/10 text-softwhite font-bold hover:bg-white/20 transition-all">
                           REPETIR SIMULACIÓN
                         </button>
                         <button onClick={() => setActiveModule(1)}
-                          className="px-6 py-3 rounded-xl bg-hope text-midnight font-bold hover:bg-hope/90 transition-all">
+                          className="px-6 py-4 rounded-xl bg-hope text-midnight font-bold hover:bg-hope/90 transition-all shadow-lg shadow-hope/20">
                           REALIZAR TEST DE PERFIL
                         </button>
                     </div>
@@ -295,26 +318,27 @@ export default function WitnessRoute() {
               </motion.div>
             )}
 
-            {/* TEST DE PERFIL */}
+            {/* SECCIÓN 1: TEST DE PERFIL */}
             {activeModule === 1 && (
-              <motion.div key="test" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+              <motion.div key="test" initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }}>
                 {profileResult ? (
-                  <div className="glass-card rounded-3xl border border-white/10 p-8 text-center">
-                    <div className="inline-flex p-4 rounded-2xl bg-midnight border border-white/10 mb-4">
+                  <div className="glass-card rounded-3xl border border-white/10 p-6 sm:p-10 text-center">
+                    <div className="inline-flex p-4 rounded-2xl bg-midnight border border-white/10 mb-6">
                       {profiles[profileResult as keyof typeof profiles].icon}
                     </div>
-                    <h3 className="text-3xl font-display font-bold text-softwhite mb-2">{profiles[profileResult as keyof typeof profiles].title}</h3>
-                    <p className="text-softwhite/70 italic mb-8">"{profiles[profileResult as keyof typeof profiles].desc}"</p>
+                    <h3 className="text-2xl sm:text-4xl font-display font-bold text-softwhite mb-4">{profiles[profileResult as keyof typeof profiles].title}</h3>
+                    <p className="text-softwhite/70 italic mb-8 text-lg leading-relaxed">"{profiles[profileResult as keyof typeof profiles].desc}"</p>
                     <div className="space-y-3 text-left max-w-md mx-auto">
+                      <h4 className="text-hope font-bold text-sm uppercase tracking-widest mb-4">Consejos para crecer:</h4>
                       {profiles[profileResult as keyof typeof profiles].tips.map((tip, idx) => (
-                        <div key={idx} className="flex gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
+                        <div key={idx} className="flex gap-3 p-4 rounded-xl bg-white/5 border border-white/5">
                           <CheckCircle2 className="w-5 h-5 text-hope shrink-0" />
-                          <p className="text-mutedblue text-sm">{tip}</p>
+                          <p className="text-mutedblue text-sm sm:text-base">{tip}</p>
                         </div>
                       ))}
                     </div>
                     <button onClick={() => { setProfileResult(null); setProfileStep(0); setProfileAnswers([]); }}
-                      className="mt-10 px-8 py-3 rounded-xl bg-white/10 text-softwhite font-bold hover:bg-white/20">
+                      className="mt-10 w-full sm:w-auto px-10 py-4 rounded-xl bg-white/10 text-softwhite font-bold hover:bg-white/20 transition-all">
                       REINICIAR TEST
                     </button>
                   </div>
@@ -322,14 +346,14 @@ export default function WitnessRoute() {
                   <div className="max-w-2xl mx-auto">
                     <div className="mb-10">
                         <span className="text-hope text-xs font-bold uppercase tracking-widest">Pregunta {profileStep + 1} de {profileQuestions.length}</span>
-                        <h3 className="text-2xl font-display text-softwhite mt-2">{profileQuestions[profileStep].q}</h3>
+                        <h3 className="text-2xl sm:text-3xl font-display text-softwhite mt-2 leading-tight">{profileQuestions[profileStep].q}</h3>
                     </div>
                     <div className="space-y-3">
                       {profileQuestions[profileStep].opts.map((opt, i) => (
                         <button key={i} onClick={() => handleProfileAnswer(opt.type)}
                           className="w-full p-5 rounded-2xl border border-white/10 bg-white/5 hover:border-hope/50 hover:bg-hope/5 transition-all text-left flex justify-between items-center group">
-                          <span className="text-softwhite group-hover:text-white">{opt.text}</span>
-                          <ChevronRight className="w-5 h-5 text-mutedblue group-hover:text-hope" />
+                          <span className="text-softwhite group-hover:text-white text-base sm:text-lg">{opt.text}</span>
+                          <ChevronRight className="w-5 h-5 text-mutedblue group-hover:text-hope shrink-0 ml-4" />
                         </button>
                       ))}
                     </div>
