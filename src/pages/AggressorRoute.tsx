@@ -181,22 +181,7 @@ export default function AggressorRoute() {
       {/* HEADER MÓVIL */}
       <header className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-midnight/80 backdrop-blur-xl border-b border-white/5 px-6 py-4 flex justify-between items-center">
         <Link to="/caminos" className="text-mutedblue"><ArrowLeft size={22} /></Link>
-        <div className="relative w-24 h-3 bg-white/10 rounded-full overflow-hidden">
-          <motion.div
-            className="h-full flex items-center justify-center text-[9px] font-bold text-black"
-            animate={{
-              width: `${Math.max(0, reputationScore)}%`,
-              backgroundColor:
-                reputationScore >= 70
-                  ? '#00C896'   // verde
-                  : reputationScore >= 40
-                    ? '#F59E0B'   // naranja
-                    : '#EF4444'   // rojo
-            }}
-          >
-            {Math.max(0, reputationScore)}%
-          </motion.div>
-        </div>
+        <span className="text-xs font-mono text-mutedblue tracking-widest uppercase">Simulador</span>
         <div className="w-6" />
       </header>
 
