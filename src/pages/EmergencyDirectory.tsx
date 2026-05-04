@@ -62,9 +62,9 @@ export default function EmergencyDirectory() {
 
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_#aaf1f7_0%,_#6fe5f1_35%,_#ffffff_100%)] text-slate-900 font-body pt-28">
-      
+
       {/* Banner 911 - Ubicación debajo del Navbar */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         className="bg-red-500/10 border-b border-red-500/20 py-3 px-4 flex items-center justify-center gap-3 text-xs md:text-sm"
@@ -77,7 +77,7 @@ export default function EmergencyDirectory() {
       </motion.div>
 
       <div className="container mx-auto px-6 py-12 max-w-5xl">
-        
+
         {/* Encabezado Compacto */}
         <header className="text-center mb-10">
           <h1 className="text-4xl md:text-5xl font-display font-bold mb-3">
@@ -89,7 +89,7 @@ export default function EmergencyDirectory() {
         </header>
 
         <div className="grid lg:grid-cols-12 gap-8 items-start">
-          
+
           {/* Columna Izquierda: Mensaje y Selector */}
           <div className="lg:col-span-4 space-y-6">
             <div className="glass-card p-6 rounded-2xl border border-slate-200 bg-white/20">
@@ -120,15 +120,20 @@ export default function EmergencyDirectory() {
                 <button
                   key={c.code}
                   onClick={() => setSelectedCountry(c.code)}
-                  className={`flex-1 lg:flex-none flex items-center justify-between px-4 py-3 rounded-xl transition-all border ${
-                    selectedCountry === c.code
+                  className={`flex-1 lg:flex-none flex items-center justify-between px-4 py-3 rounded-xl transition-all border ${selectedCountry === c.code
                       ? 'bg-teal-100 border-teal-600 text-teal-800'
                       : 'bg-white/50 border-slate-300 text-slate-700 hover:border-teal-400'
-                  }`}
+                    }`}
                 >
-                  <div className="flex items-center gap-3">
-                    <ReactCountryFlag countryCode={c.countryCode} svg style={{ width: '1.5em', height: '1.5em' }} />
-                    <span className="text-sm font-semibold">{c.name}</span>
+                  <div className="flex items-center gap-2 min-w-0">
+                    <ReactCountryFlag
+                      countryCode={c.countryCode}
+                      svg
+                      style={{ width: '1.2em', height: '1.2em', flexShrink: 0 }}
+                    />
+                    <span className="text-sm md:text-base font-semibold truncate">
+                      {c.name}
+                    </span>
                   </div>
                   {selectedCountry === c.code && <div className="h-1.5 w-1.5 rounded-full bg-teal-600 animate-pulse" />}
                 </button>
@@ -147,7 +152,7 @@ export default function EmergencyDirectory() {
                 className="grid gap-4"
               >
                 {country?.resources.map((res) => (
-                  <div 
+                  <div
                     key={res.name}
                     className="group glass-card p-5 rounded-2xl border border-slate-200 bg-white/20 hover:border-teal-400 transition-all flex items-center justify-between gap-4"
                   >
@@ -179,7 +184,7 @@ export default function EmergencyDirectory() {
 
                 {/* Nota de pie informativa */}
                 <p className="text-center text-base text-slate-700 mt-4 px-10 leading-relaxed">
-                  * Los números presentados son servicios públicos o de ONGs reconocidas. 
+                  * Los números presentados son servicios públicos o de ONGs reconocidas.
                   El costo de la llamada depende de tu operador local (la mayoría son gratuitos).
                 </p>
               </motion.div>

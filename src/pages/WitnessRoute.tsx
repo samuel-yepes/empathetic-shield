@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAppStore } from '../store/useAppStore';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Shield, Award, ClipboardList, Zap, MessageCircle, EyeOff, UserPlus, Megaphone, Smile, Handshake, ChevronRight, CheckCircle2, Eye } from 'lucide-react';
+import { ArrowLeft, Shield, Award, ClipboardList, Zap, MessageCircle, EyeOff, UserPlus, Megaphone, Smile, Handshake, ChevronRight, CheckCircle2, Eye, Users, Sparkles, AlertTriangle } from 'lucide-react';
 
-// Assets
+// Assets (puedes ajustar las rutas de tus imágenes según corresponda)
 import scene1 from '../assets/scene-1-hallway.jpg';
 import scene2 from '../assets/scene-2-cyber.jpg';
 import scene3 from '../assets/scene-3-exclusion.jpg';
@@ -15,61 +15,61 @@ const witnessScenes = [
   {
     id: 1,
     image: scene1,
-    title: 'El Pasillo',
-    narration: 'En el pasillo, ves a un grupo rodeando a un compañero más pequeño. Le están quitando su mochila y se burlan de él.',
+    title: 'Exclusión en el Grupo',
+    narration: 'Notas que un compañero de clase es sistemáticamente excluido de los grupos de trabajo y se sienta solo en la cafetería.',
     options: [
-      { text: 'Unirse a las burlas', impact: 'reir' },
-      { text: 'Pasar de largo sin mirar', impact: 'ignorar' },
-      { text: 'Ponerse al lado del compañero', impact: 'intervenir' },
-      { text: 'Buscar rápido a un profesor', impact: 'reportar' },
+      { text: 'Unirme a la exclusión para no ser excluido yo también', impact: 'reir' },
+      { text: 'Hacer como si no lo hubiera notado y seguir con mis amigos', impact: 'ignorar' },
+      { text: 'Acercarme a saludarlo e invitarlo a unirse a mi mesa', impact: 'intervenir' },
+      { text: 'Informar a un profesor o tutor sobre la situación', impact: 'reportar' },
     ],
   },
   {
     id: 2,
     image: scene2,
-    title: 'Ciberbullying',
-    narration: 'En el grupo de WhatsApp de la clase, empiezan a circular memes hirientes y fotos retocadas sobre una compañera.',
+    title: 'Burlas en Redes Sociales',
+    narration: 'Ves comentarios ofensivos y burlas dirigidas a un compañero de clase en un chat público del grupo.',
     options: [
-      { text: 'Reenviar el mensaje a otros', impact: 'reir' },
-      { text: 'Silenciar el grupo y no leer', impact: 'ignorar' },
-      { text: 'Escribir que paren el acoso', impact: 'intervenir' },
-      { text: 'Reportar el grupo a la escuela', impact: 'reportar' },
+      { text: 'Darle "me gusta" a la burla para encajar', impact: 'reir' },
+      { text: 'Silenciar el chat y no decir nada', impact: 'ignorar' },
+      { text: 'Defender a tu compañero respondiendo con respeto y cortando el rumor', impact: 'intervenir' },
+      { text: 'Reportar el mensaje y al usuario por acoso en la plataforma', impact: 'reportar' },
     ],
   },
   {
     id: 3,
     image: scene3,
-    title: 'La Cafetería',
-    narration: 'Estás almorzando y notas que tu grupo de amigos está ignorando totalmente a un compañero nuevo que intentó sentarse con ustedes.',
+    title: 'Acoso Verbal',
+    narration: 'Un compañero es constantemente insultado y menospreciado por su apariencia física en los pasillos.',
     options: [
-      { text: 'Hacer bromas sobre el compañero', impact: 'reir' },
-      { text: 'Seguir la conversación sin integrarlo', impact: 'ignorar' },
-      { text: 'Presentarlo y hacerle espacio', impact: 'intervenir' },
-      { text: 'Contarle a un tutor sobre el clima del grupo', impact: 'reportar' },
+      { text: 'Reírme junto con el grupo para evitar problemas', impact: 'reir' },
+      { text: 'Pasar de largo y fingir que no escucho nada', impact: 'ignorar' },
+      { text: 'Mostrarle apoyo a la persona afectada después del incidente', impact: 'intervenir' },
+      { text: 'Intervenir en el momento o buscar a una autoridad escolar', impact: 'reportar' },
     ],
   },
   {
     id: 4,
     image: scene4,
-    title: 'El Vestuario',
-    narration: 'En el vestuario después de deportes, ves que le escondieron la ropa a alguien y lo están grabando mientras la busca desesperado.',
+    title: 'Intimidación en el Casillero',
+    narration: 'Observas cómo un estudiante bloquea el paso a otro y le exige que entregue sus pertenencias.',
     options: [
-      { text: 'Grabar también con tu celular', impact: 'reir' },
-      { text: 'Cambiarse rápido e irse', impact: 'ignorar' },
-      { text: 'Ayudarlo a buscar y pedir que paren', impact: 'intervenir' },
-      { text: 'Llamar inmediatamente al entrenador', impact: 'reportar' },
+      { text: 'Grabar el conflicto para subirlo a internet', impact: 'reir' },
+      { text: 'Alejarme rápidamente del lugar', impact: 'ignorar' },
+      { text: 'Hacer ruido o distraer al agresor para detener la situación', impact: 'intervenir' },
+      { text: 'Llamar inmediatamente a un adulto o personal de seguridad', impact: 'reportar' },
     ],
   },
   {
     id: 5,
     image: scene5,
-    title: 'El Recreo',
-    narration: 'Durante el recreo, en una zona apartada, ves que están empujando e intimidando a alguien para que les dé su dinero.',
+    title: 'Extorsión o Presión Grupal',
+    narration: 'Notas que algunos compañeros obligan a otro a hacerles tareas o pagarles dinero para dejarlo en paz.',
     options: [
-      { text: 'Alentar a los agresores', impact: 'reir' },
-      { text: 'Alejarse para no meterse en problemas', impact: 'ignorar' },
-      { text: 'Interponerte físicamente (si es seguro)', impact: 'intervenir' },
-      { text: 'Gritar pidiendo ayuda de adultos', impact: 'reportar' },
+      { text: 'Aprovecharme de la situación para pedir también favores', impact: 'reir' },
+      { text: 'No intervenir porque no es mi problema', impact: 'ignorar' },
+      { text: 'Hablar con la víctima para brindarle apoyo y sugerir ayuda', impact: 'intervenir' },
+      { text: 'Denunciar la situación con las autoridades del colegio de forma confidencial', impact: 'reportar' },
     ],
   },
 ];
@@ -210,32 +210,37 @@ export default function WitnessRoute() {
     setProfileResult(result);
   };
 
-  const modules = [{ icon: Zap, label: 'Simulador' }, { icon: ClipboardList, label: 'Test' }];
+  const modules = [
+    { icon: Zap, label: 'Entrenamiento' },
+    { icon: ClipboardList, label: 'Test' }
+  ];
 
   return (
-    <div className="min-h-screen bg-midnight pt-24">
-      <div className="flex">
-        {/* Sidebar (PC únicamente) */}
-        <div className="hidden lg:block w-72 min-h-screen border-r border-softwhite/5 p-6 sticky top-24 self-start">
-          <Link to="/caminos" className="flex items-center gap-2 text-mutedblue hover:text-trust text-sm mb-8 transition-colors">
-            <ArrowLeft className="w-4 h-4" /> Volver
+    <div className="min-h-screen pt-24" style={{ background: 'linear-gradient(180deg, #6fe5f1 0%, #aaf1f7 100%)' }}>
+      <div className="flex flex-col lg:flex-row">
+        {/* Sidebar Lateral */}
+        <div className="hidden lg:block w-72 min-h-screen border-r border-softwhite/5 p-8 sticky top-24 self-start">
+          <Link to="/caminos" className="flex items-center gap-2 text-slate-800 hover:text-indigo-900 text-base mb-10 transition-colors group font-medium">
+            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" /> Volver
           </Link>
-          <h3 className="font-display font-bold text-lg text-softwhite mb-6">Academia del Aliado</h3>
-          <div className="space-y-2">
+          <h3 className="font-display font-bold text-2xl text-slate-900 mb-8 tracking-tight">Centro de Apoyo</h3>
+          <div className="space-y-3">
             {modules.map((mod, i) => (
               <button key={i} onClick={() => setActiveModule(i)}
-                className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-body transition-colors ${
-                  activeModule === i ? 'bg-hope/10 text-hope' : 'text-mutedblue hover:text-softwhite hover:bg-softwhite/5'
+                className={`w-full flex items-center gap-4 px-5 py-4 rounded-2xl text-base font-semibold transition-all ${
+                  activeModule === i 
+                    ? 'bg-indigo-600/20 text-indigo-900 border border-indigo-200 shadow-sm' 
+                    : 'text-slate-700 hover:bg-white/40 hover:text-slate-900'
                 }`}>
-                <mod.icon className="w-4 h-4" />{mod.label}
+                <mod.icon className="w-5 h-5" />
+                {mod.label}
               </button>
             ))}
           </div>
         </div>
 
         <div className="flex-1 p-4 lg:p-10 max-w-4xl pb-24 lg:pb-10 mx-auto">
-          
-          {/* NAVEGACIÓN MÓVIL (Aparece solo en pantallas pequeñas) */}
+          {/* Navegación Móvil */}
           <div className="lg:hidden flex flex-col gap-4 mb-8">
             <Link to="/caminos" className="flex items-center gap-2 text-mutedblue text-sm">
               <ArrowLeft className="w-4 h-4" /> Volver a Caminos
@@ -248,7 +253,7 @@ export default function WitnessRoute() {
                   className={`flex-1 flex items-center justify-center gap-2 p-3 rounded-xl text-sm font-bold transition-all ${
                     activeModule === i 
                       ? 'bg-hope text-midnight shadow-lg shadow-hope/20' 
-                      : 'bg-white/5 text-softwhite border border-white/10'
+                      : 'bg-white/5 text-slate-900 border border-white/10'
                   }`}
                 >
                   <mod.icon className="w-4 h-4" />
@@ -265,18 +270,19 @@ export default function WitnessRoute() {
                 {!isSimFinished ? (
                   <div className="space-y-6">
                     <div className="flex items-center justify-between mb-4">
-                        <h2 className="font-display font-bold text-2xl text-softwhite flex items-center gap-3">
-                            <Eye className="text-trust" /> Entrenamiento
-                        </h2>
-                        <span className="text-mutedblue font-mono text-sm">{sceneIndex + 1} / {witnessScenes.length}</span>
+                      <h2 className="font-display font-bold text-3xl text-slate-900 flex items-center gap-3">
+                        <Eye className="text-trust" /> Entrenamiento
+                      </h2>
+                      <span className="text-mutedblue font-mono text-sm">{sceneIndex + 1} / {witnessScenes.length}</span>
                     </div>
 
                     <motion.div key={witnessScenes[sceneIndex].id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
                       <div className="relative aspect-video sm:aspect-auto sm:h-[400px]">
                         <img src={witnessScenes[sceneIndex].image} className="w-full h-full object-cover" alt="Situación" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/20 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-slate-800 via-slate-800/50 to-transparent" />
                         <div className="absolute bottom-0 p-4 sm:p-8">
-                          <p className="text-softwhite text-lg sm:text-xl leading-snug font-medium">{witnessScenes[sceneIndex].narration}</p>
+                          <p className="text-white text-xl sm:text-2xl leading-snug font-medium">{witnessScenes[sceneIndex].title}</p>
+                          <p className="text-slate-300 text-sm sm:text-base mt-2">{witnessScenes[sceneIndex].narration}</p>
                         </div>
                       </div>
                     </motion.div>
@@ -289,7 +295,7 @@ export default function WitnessRoute() {
                             ${chosenOption === opt ? 'border-hope bg-hope/10' : 'border-white/10 bg-white/5 hover:bg-white/10'}
                             ${chosenOption && chosenOption !== opt ? 'opacity-40' : 'opacity-100'}`}>
                           {getImpactIcon(opt.impact)}
-                          <span className="text-softwhite text-sm sm:text-base">{opt.text}</span>
+                          <span className="text-slate-900 text-sm sm:text-base">{opt.text}</span>
                         </button>
                       ))}
                     </div>
@@ -300,17 +306,17 @@ export default function WitnessRoute() {
                     <h3 className={`text-2xl sm:text-4xl font-display font-bold mb-4 ${getSimFinalMessage().color}`}>
                         {getSimFinalMessage().title}
                     </h3>
-                    <p className="text-softwhite/70 text-base sm:text-lg leading-relaxed max-w-lg mx-auto mb-8">
+                    <p className="text-slate-700 text-base sm:text-lg leading-relaxed max-w-lg mx-auto mb-8">
                         {getSimFinalMessage().msg}
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <button onClick={() => { setIsSimFinished(false); setSceneIndex(0); setSimAnswers([]); }}
-                          className="px-6 py-4 rounded-xl bg-white/10 text-softwhite font-bold hover:bg-white/20 transition-all">
-                          REPETIR SIMULACIÓN
+                          className="px-6 py-4 rounded-xl bg-white/10 text-slate-900 font-bold hover:bg-white/20 transition-all">
+                            REPETIR ENTRENAMIENTO
                         </button>
                         <button onClick={() => setActiveModule(1)}
                           className="px-6 py-4 rounded-xl bg-hope text-midnight font-bold hover:bg-hope/90 transition-all shadow-lg shadow-hope/20">
-                          REALIZAR TEST DE PERFIL
+                            REALIZAR TEST DE PERFIL
                         </button>
                     </div>
                   </motion.div>
@@ -326,19 +332,19 @@ export default function WitnessRoute() {
                     <div className="inline-flex p-4 rounded-2xl bg-midnight border border-white/10 mb-6">
                       {profiles[profileResult as keyof typeof profiles].icon}
                     </div>
-                    <h3 className="text-2xl sm:text-4xl font-display font-bold text-softwhite mb-4">{profiles[profileResult as keyof typeof profiles].title}</h3>
-                    <p className="text-softwhite/70 italic mb-8 text-lg leading-relaxed">"{profiles[profileResult as keyof typeof profiles].desc}"</p>
+                    <h3 className="text-2xl sm:text-4xl font-display font-bold text-slate-900 mb-4">{profiles[profileResult as keyof typeof profiles].title}</h3>
+                    <p className="text-slate-700 italic mb-8 text-lg leading-relaxed">"{profiles[profileResult as keyof typeof profiles].desc}"</p>
                     <div className="space-y-3 text-left max-w-md mx-auto">
                       <h4 className="text-hope font-bold text-sm uppercase tracking-widest mb-4">Consejos para crecer:</h4>
                       {profiles[profileResult as keyof typeof profiles].tips.map((tip, idx) => (
                         <div key={idx} className="flex gap-3 p-4 rounded-xl bg-white/5 border border-white/5">
                           <CheckCircle2 className="w-5 h-5 text-hope shrink-0" />
-                          <p className="text-mutedblue text-sm sm:text-base">{tip}</p>
+                          <p className="text-slate-600 text-sm sm:text-base">{tip}</p>
                         </div>
                       ))}
                     </div>
                     <button onClick={() => { setProfileResult(null); setProfileStep(0); setProfileAnswers([]); }}
-                      className="mt-10 w-full sm:w-auto px-10 py-4 rounded-xl bg-white/10 text-softwhite font-bold hover:bg-white/20 transition-all">
+                      className="mt-10 w-full sm:w-auto px-10 py-4 rounded-xl bg-white/10 text-slate-900 font-bold hover:bg-white/20 transition-all">
                       REINICIAR TEST
                     </button>
                   </div>
@@ -346,13 +352,13 @@ export default function WitnessRoute() {
                   <div className="max-w-2xl mx-auto">
                     <div className="mb-10">
                         <span className="text-hope text-xs font-bold uppercase tracking-widest">Pregunta {profileStep + 1} de {profileQuestions.length}</span>
-                        <h3 className="text-2xl sm:text-3xl font-display text-softwhite mt-2 leading-tight">{profileQuestions[profileStep].q}</h3>
+                        <h3 className="text-3xl sm:text-4xl font-display text-slate-900 mt-2 leading-tight">{profileQuestions[profileStep].q}</h3>
                     </div>
                     <div className="space-y-3">
                       {profileQuestions[profileStep].opts.map((opt, i) => (
                         <button key={i} onClick={() => handleProfileAnswer(opt.type)}
                           className="w-full p-5 rounded-2xl border border-white/10 bg-white/5 hover:border-hope/50 hover:bg-hope/5 transition-all text-left flex justify-between items-center group">
-                          <span className="text-softwhite group-hover:text-white text-base sm:text-lg">{opt.text}</span>
+                          <span className="text-slate-900 group-hover:text-slate-800 text-base sm:text-lg">{opt.text}</span>
                           <ChevronRight className="w-5 h-5 text-mutedblue group-hover:text-hope shrink-0 ml-4" />
                         </button>
                       ))}
