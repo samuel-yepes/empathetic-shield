@@ -38,7 +38,7 @@ export default function StatsSection() {
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="estadisticas" className="py-24 bg-navy relative">
+    <section id="estadisticas" className="py-24 bg-[#c8f7fb] relative">
       <div className="absolute inset-0 gradient-mesh opacity-50" />
       <div ref={ref} className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -48,15 +48,15 @@ export default function StatsSection() {
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="glass-card rounded-2xl p-6 text-center group hover:bg-softwhite/[0.06] transition-colors"
+              className="glass-card rounded-2xl p-6 text-center group hover:bg-white/60 transition-colors"
             >
-              <div className="w-12 h-12 rounded-xl bg-trust/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-trust/20 transition-colors">
-                <stat.icon className="w-6 h-6 text-trust" />
+              <div className="w-12 h-12 rounded-xl bg-[#74d8e6] flex items-center justify-center mx-auto mb-4 group-hover:bg-[#43c2d5] transition-colors">
+                <stat.icon className="w-6 h-6 text-slate-900" />
               </div>
-              <p className="font-display font-bold text-3xl md:text-4xl text-softwhite mb-2">
+              <p className="font-display font-bold text-3xl md:text-4xl text-slate-900 mb-2">
                 <AnimatedNumber value={stat.value} suffix={stat.suffix} format={stat.format} inView={inView} />
               </p>
-              <p className="text-sm text-mutedblue font-body">{stat.label}</p>
+              <p className="text-sm text-slate-700 font-body">{stat.label}</p>
             </motion.div>
           ))}
         </div>

@@ -72,15 +72,15 @@ function ConceptCard({ concept, index }: { concept: typeof concepts[0]; index: n
       transition={{ duration: 0.5, delay: index * 0.05 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      onClick={() => setHovered(!hovered)} // Mejora para móviles
-      className={`glass-card rounded-3xl p-6 relative flex flex-col overflow-hidden transition-all duration-500 border border-softwhite/5 ${
+      onClick={() => setHovered(!hovered)}
+      className={`glass-card rounded-3xl p-6 relative flex flex-col overflow-hidden transition-all duration-500 border border-white/20 ${
         concept.large ? 'md:col-span-2 lg:col-span-1' : 'col-span-1'
-      } ${hovered ? 'bg-softwhite/[0.08] shadow-xl' : 'bg-softwhite/[0.03]'}`}
+      } ${hovered ? 'bg-white/90 shadow-xl' : 'bg-white/75'}`}
     >
       <div className="relative z-10">
         <div className="flex items-start justify-between mb-6">
           <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-500 ${
-            hovered ? 'bg-trust text-midnight' : 'bg-trust/10 text-trust'
+            hovered ? 'bg-[#0d7ea2] text-white' : 'bg-[#b6f2f7]/75 text-[#0f5a67]'
           }`}>
             <concept.icon className="w-6 h-6" />
           </div>
@@ -101,10 +101,10 @@ function ConceptCard({ concept, index }: { concept: typeof concepts[0]; index: n
           </div>
         </div>
 
-        <h3 className="font-display font-bold text-2xl text-softwhite mb-3">
+        <h3 className="font-display font-bold text-2xl text-slate-900 mb-3">
           {concept.title}
         </h3>
-        <p className="text-sm md:text-base text-mutedblue font-body leading-relaxed">
+        <p className="text-sm md:text-base text-slate-700 font-body leading-relaxed">
           {concept.desc}
         </p>
       </div>
@@ -132,13 +132,13 @@ function ConceptCard({ concept, index }: { concept: typeof concepts[0]; index: n
 
 export default function BentoGrid() {
   return (
-    <section id="conceptos" className="py-24 bg-midnight">
+    <section id="conceptos" className="py-24 bg-[#e6fbff]">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="max-w-2xl mb-16">
-          <h2 className="font-display font-bold text-4xl md:text-5xl text-softwhite mb-4">
-            Tipos de <span className="text-trust">Bullying</span>
+          <h2 className="font-display font-bold text-4xl md:text-5xl text-slate-900 mb-4">
+            Tipos de <span className="text-teal-800">Bullying</span>
           </h2>
-          <p className="text-mutedblue text-lg">
+          <p className="text-slate-700 text-lg">
             Pasa el mouse o toca una tarjeta para conocer el impacto real de cada situación.
           </p>
         </div>

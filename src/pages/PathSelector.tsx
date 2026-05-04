@@ -61,18 +61,20 @@ export default function PathSelector() {
   };
 
   return (
-    <div className="min-h-screen bg-midnight pt-28 pb-20">
-      <div ref={ref} className="container mx-auto px-4 lg:px-8">
+    <div className="relative min-h-screen bg-[radial-gradient(circle_at_top_left,_#aaf1f7_0%,_#6fe5f1_35%,_#78d4e9_100%)] pt-28 pb-20 overflow-hidden">
+      <div className="absolute top-0 right-0 w-72 h-72 rounded-full bg-white/60 blur-3xl opacity-70 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-[#0d7ea2]/15 blur-3xl opacity-90 pointer-events-none" />
+      <div ref={ref} className="container mx-auto px-4 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           className="text-center mb-16"
         >
-          <h1 className="font-display font-bold text-5xl md:text-6xl text-softwhite mb-4">
-            ¿Cuál es tu <span className="text-trust">Historia</span>?
+          <h1 className="font-display font-bold text-5xl md:text-6xl text-slate-900 mb-4 leading-tight">
+            ¿Cuál es tu <span className="text-teal-900">Historia</span>?
           </h1>
-          <p className="text-mutedblue font-body text-lg max-w-xl mx-auto">
-            Cada perspectiva importa. Elige la tuya para comenzar.
+          <p className="text-slate-700 font-body text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+            Cada perspectiva importa. Elige la tuya para comenzar con seguridad, claridad y apoyo.
           </p>
         </motion.div>
 
@@ -91,28 +93,25 @@ export default function PathSelector() {
                 <motion.div
                   whileHover={{ y: -12, rotateX: 5, scale: 1.02 }}
                   transition={{ type: 'spring', stiffness: 300 }}
-                  className="glass-card rounded-2xl p-8 h-[400px] flex flex-col items-center justify-center text-center group relative overflow-hidden"
+                  className="relative overflow-hidden rounded-3xl p-8 h-[400px] flex flex-col items-center justify-center text-center bg-white/85 border border-slate-200/60 shadow-lg shadow-slate-500/10 backdrop-blur-xl"
                   style={{ perspective: '1000px' }}
                 >
-                  <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500"
-                    style={{ background: `radial-gradient(circle at center, ${path.accent}, transparent 70%)` }}
-                  />
-                  <div
-                    className="w-20 h-20 rounded-2xl flex items-center justify-center mb-6"
-                    style={{ backgroundColor: `${path.accent}15` }}
-                  >
-                    <path.icon className="w-10 h-10" style={{ color: path.accent }} />
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#aaf1f7]/70 via-white/40 to-[#6fe5f1]/60 opacity-95" />
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_center,_rgba(13,126,162,0.18)_0%,_transparent_55%)]" />
+                  <div className="relative z-10 flex flex-col items-center gap-6">
+                    <div className="w-24 h-24 rounded-3xl flex items-center justify-center mb-2 bg-white shadow-sm shadow-slate-300/20">
+                      <path.icon className="w-12 h-12" style={{ color: path.accent }} />
+                    </div>
+                    <h3 className="font-display font-bold text-2xl text-slate-900 mb-2">{path.label}</h3>
+                    <p className="text-slate-600 font-body text-sm leading-relaxed max-w-xs">{path.sublabel}</p>
+                    <motion.div
+                      className="mt-6 px-6 py-3 rounded-full text-sm font-body font-semibold text-white shadow-md shadow-slate-400/20"
+                      style={{ backgroundColor: path.accent }}
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      Comenzar →
+                    </motion.div>
                   </div>
-                  <h3 className="font-display font-bold text-2xl text-softwhite mb-2">{path.label}</h3>
-                  <p className="text-mutedblue font-body text-sm">{path.sublabel}</p>
-                  <motion.div
-                    className="mt-6 px-6 py-2.5 rounded-full text-sm font-body font-semibold text-softwhite"
-                    style={{ backgroundColor: path.accent }}
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    Comenzar →
-                  </motion.div>
                 </motion.div>
               </Link>
             </motion.div>
@@ -127,7 +126,7 @@ export default function PathSelector() {
         >
           <button
             onClick={() => { setShowQuiz(true); setQuizStep(0); setAnswers([]); }}
-            className="text-mutedblue hover:text-trust transition-colors font-body text-sm underline underline-offset-4"
+            className="text-teal-900 hover:text-[#0d7ea2] transition-colors font-body text-sm underline underline-offset-4"
           >
             ¿No sabes cuál eres? → Toma el test de 2 minutos
           </button>
@@ -138,29 +137,29 @@ export default function PathSelector() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-midnight/80 backdrop-blur-lg p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/80 backdrop-blur-lg p-4"
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="glass-card rounded-2xl p-8 max-w-md w-full relative"
+            className="relative rounded-3xl p-8 max-w-md w-full bg-white/95 shadow-2xl shadow-slate-500/20"
           >
             <button
               onClick={() => setShowQuiz(false)}
-              className="absolute top-4 right-4 text-mutedblue hover:text-softwhite"
+              className="absolute top-4 right-4 text-slate-500 hover:text-slate-900"
             >
               <X className="w-5 h-5" />
             </button>
-            <div className="w-full bg-softwhite/5 rounded-full h-1.5 mb-6">
+            <div className="w-full bg-slate-200 rounded-full h-2 mb-6 overflow-hidden">
               <motion.div
-                className="h-full rounded-full gradient-trust-hope"
+                className="h-full rounded-full bg-teal-700"
                 animate={{ width: `${((quizStep + 1) / quizQuestions.length) * 100}%` }}
               />
             </div>
-            <p className="text-xs text-mutedblue font-mono mb-4">
+            <p className="text-xs text-slate-500 font-mono mb-4">
               Pregunta {quizStep + 1} de {quizQuestions.length}
             </p>
-            <h3 className="font-display font-bold text-xl text-softwhite mb-6">
+            <h3 className="font-display font-bold text-2xl text-slate-900 mb-6 leading-snug">
               {quizQuestions[quizStep].q}
             </h3>
             <div className="flex flex-col gap-3">
@@ -170,7 +169,7 @@ export default function PathSelector() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => handleAnswer(oi)}
-                  className="glass-card rounded-xl p-4 text-left text-softwhite font-body text-sm hover:bg-softwhite/[0.06] transition-colors"
+                  className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-left text-slate-900 font-body text-sm hover:bg-slate-100 transition-colors shadow-sm"
                 >
                   {opt}
                 </motion.button>

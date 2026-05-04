@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           <div className="space-y-4">
             <div className="flex items-center gap-4">
-              <img src="/logo.png" alt="Empathix Logo" className="w-16 h-16" />
+              <img src="/logo_empathix.png" alt="Empathix Logo" className="w-16 h-16" />
               <span className="font-display font-bold text-2xl text-softwhite">Empathix</span>
             </div>
             <p className="text-sm text-mutedblue leading-relaxed">

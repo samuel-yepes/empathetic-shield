@@ -20,13 +20,13 @@ export default function CycleSection() {
   const center = size / 2;
 
   return (
-    <section className="py-24 bg-midnight relative overflow-hidden" id="ciclo">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-trust/5 rounded-full blur-[120px]" />
+    <section className="py-24 bg-[#96e7f2] relative overflow-hidden" id="ciclo">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#0daebc]/20 rounded-full blur-[120px]" />
 
       <div ref={ref} className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-20">
-          <h2 className="font-display font-bold text-4xl md:text-6xl text-softwhite mb-6">
-            El Ciclo del <span className="text-warm italic">Bullying</span>
+          <h2 className="font-display font-bold text-4xl md:text-6xl text-slate-900 mb-6">
+            El Ciclo del <span className="text-rose-700 italic">Bullying</span>
           </h2>
         </div>
 
@@ -92,9 +92,9 @@ export default function CycleSection() {
                     <div className={`
                       relative w-14 h-14 rounded-full flex items-center justify-center border-2 transition-all duration-500
                       ${isActive 
-                        ? 'bg-trust border-trust text-white scale-110 shadow-lg shadow-trust/20' 
-                        : 'bg-midnight border-softwhite/10 text-mutedblue hover:border-trust/40'}
-                    `}>
+                        ? 'bg-[#0d7ea2] border-[#0d7ea2] text-white scale-110 shadow-lg shadow-[#0d7ea2]/20' 
+                        : 'bg-white/90 border-slate-200 text-slate-700 hover:border-[#0d7ea2]/40'}`
+                    }>
                       <span className="font-mono font-bold text-lg">{i + 1}</span>
                     </div>
 
@@ -115,13 +115,13 @@ export default function CycleSection() {
                 key={activeNode}
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className="text-center bg-midnight/40 backdrop-blur-md w-32 h-32 rounded-full border border-softwhite/5 flex flex-col items-center justify-center"
+                className="text-center bg-white/80 backdrop-blur-md w-32 h-32 rounded-full border border-white/60 flex flex-col items-center justify-center"
               >
-                <span className="text-mutedblue font-mono text-xs uppercase tracking-tighter mb-1">Fase</span>
+                <span className="text-slate-500 font-mono text-xs uppercase tracking-tighter mb-1">Fase</span>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-softwhite font-display text-5xl font-black">{activeNode + 1}</span>
-                  <span className="text-trust font-display text-2xl font-bold">/</span>
-                  <span className="text-mutedblue/50 font-display text-xl font-bold">{nodes.length}</span>
+                  <span className="text-slate-900 font-display text-5xl font-black">{activeNode + 1}</span>
+                  <span className="text-teal-800 font-display text-2xl font-bold">/</span>
+                  <span className="text-slate-500/70 font-display text-xl font-bold">{nodes.length}</span>
                 </div>
                 <div className="mt-2 w-12 h-1 bg-softwhite/5 rounded-full overflow-hidden">
                   <motion.div 
@@ -142,27 +142,27 @@ export default function CycleSection() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="glass-card rounded-[2.5rem] p-10 border border-softwhite/5 bg-gradient-to-br from-softwhite/[0.03] to-transparent backdrop-blur-2xl"
+                className="glass-card rounded-[2.5rem] p-10 border border-white/30 bg-white/80 backdrop-blur-2xl"
               >
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="h-px flex-1 bg-softwhite/10" />
-                  <span className="text-warm font-mono text-[10px] font-bold uppercase tracking-[0.2em]">Crítico</span>
-                  <div className="h-px flex-1 bg-softwhite/10" />
+                  <div className="h-px flex-1 bg-slate-200/70" />
+                  <span className="text-rose-700 font-mono text-[10px] font-bold uppercase tracking-[0.2em]">Crítico</span>
+                  <div className="h-px flex-1 bg-slate-200/70" />
                 </div>
 
-                <h3 className="font-display font-bold text-4xl text-softwhite mb-4 tracking-tight">
+                <h3 className="font-display font-bold text-4xl text-slate-900 mb-4 tracking-tight">
                   {nodes[activeNode].label}
                 </h3>
                 
-                <p className="text-mutedblue font-body text-lg leading-relaxed mb-8 opacity-80">
+                <p className="text-slate-700 font-body text-lg leading-relaxed mb-8 opacity-90">
                   {nodes[activeNode].desc}
                 </p>
 
-                <div className="flex items-start gap-4 bg-warm/5 border border-warm/10 rounded-2xl p-5 shadow-inner">
-                  <Lightbulb className="text-warm w-6 h-6 shrink-0" />
+                <div className="flex items-start gap-4 bg-rose-50 border border-rose-100 rounded-2xl p-5 shadow-inner">
+                  <Lightbulb className="text-rose-700 w-6 h-6 shrink-0" />
                   <div>
-                    <span className="text-warm font-bold text-[10px] uppercase tracking-widest block mb-1">Estrategia de Intervención</span>
-                    <p className="text-softwhite/80 text-sm font-body leading-snug">
+                    <span className="text-rose-700 font-bold text-[10px] uppercase tracking-widest block mb-1">Estrategia de Intervención</span>
+                    <p className="text-slate-700/90 text-sm font-body leading-snug">
                       {nodes[activeNode].tip}
                     </p>
                   </div>
@@ -170,7 +170,7 @@ export default function CycleSection() {
 
                 <button 
                   onClick={() => setActiveNode((activeNode + 1) % nodes.length)}
-                  className="mt-10 w-full py-4 rounded-xl border border-trust/20 hover:border-trust/50 hover:bg-trust/5 flex items-center justify-center gap-3 text-trust transition-all font-display font-bold text-sm uppercase tracking-widest group"
+                  className="mt-10 w-full py-4 rounded-xl border border-[#0d7ea2]/20 hover:border-[#0d7ea2]/50 hover:bg-[#0d7ea2]/10 flex items-center justify-center gap-3 text-[#0d7ea2] transition-all font-display font-bold text-sm uppercase tracking-widest group"
                 >
                   {activeNode === nodes.length - 1 ? 'Reiniciar Ciclo' : 'Continuar Análisis'}
                   {activeNode === nodes.length - 1 ? <RefreshCcw size={16} /> : <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />}

@@ -7,68 +7,68 @@ import {
 } from 'lucide-react';
 
 const resources = {
- videos: [ 
-   {
-     id: 5,
-     title: 'Video conmovedor sobre víctimas de bullying',
-     description: 'Jóvenes leen mensajes de víctimas reales de bullying, mostrando el impacto emocional que deja el acoso.',
-     duration: '~5 min',
-     category: 'Impacto',
-     url: 'https://www.youtube.com/watch?v=4zxvLu3UYP8',
-     thumbnail: 'https://img.youtube.com/vi/4zxvLu3UYP8/hqdefault.jpg',
-     youtubeId: '4zxvLu3UYP8',
-   },
-   {
-     id: 3,
-     title: 'Cortometraje sobre bullying (historia impactante)',
-     description: 'Corto realista que muestra las consecuencias emocionales del bullying en estudiantes.',
-     duration: '~7 min',
-     category: 'Corto',
-     url: 'https://www.youtube.com/watch?v=91HgatU6zL8',
-     thumbnail: 'https://img.youtube.com/vi/91HgatU6zL8/hqdefault.jpg',
-     youtubeId: '91HgatU6zL8',
-   },
-   {
-    id: 6,
-    title: 'Cortometraje bullying – No entiendo por qué',
-    description: 'Historia reflexiva sobre el bullying y sus consecuencias emocionales en adolescentes.',
-    duration: '~6 min',
-    category: 'Conciencia',
-    url: 'https://www.youtube.com/watch?v=ped-Vde_xwI',
-    thumbnail: 'https://img.youtube.com/vi/ped-Vde_xwI/hqdefault.jpg',
-    youtubeId: 'ped-Vde_xwI',
-  },
-  {
-    id: 2,
-    title: 'Testimonios contra el Acoso Escolar',
-    description: 'Serie de testimonios en video de jóvenes que han vivido el acoso escolar, compartiendo sus experiencias y consejos.',
-    duration: '~12 min',
-    category: 'Testimonio',
-    url: 'https://www.youtube.com/watch?v=TwnrKUceJbQ',
-    thumbnail: 'https://img.youtube.com/vi/TwnrKUceJbQ/hqdefault.jpg',
-    youtubeId: 'TwnrKUceJbQ',
-  },
-  {
-    id: 4,
-    title: 'Cortometraje sobre bullying (caso realista)',
-    description: 'Corto impactante basado en situaciones reales de acoso escolar que refleja sus consecuencias emocionales.',
-    duration: '~10 min',
-    category: 'Corto',
-    url: 'https://www.youtube.com/watch?v=Mp-8gRAWWqI',
-    thumbnail: 'https://img.youtube.com/vi/Mp-8gRAWWqI/hqdefault.jpg',
-    youtubeId: 'Mp-8gRAWWqI',
-  },
-  {
-    id: 1,
-    title: 'El bullying explicado: señales y consecuencias reales',
-    description: 'Explicación clara del acoso escolar con ejemplos reales y señales de alerta que muchas veces pasan desapercibidas.',
-    duration: '~6 min',
-    category: 'Conciencia',
-    url: 'https://www.youtube.com/watch?v=I-ihC-FXbbI',
-    thumbnail: 'https://img.youtube.com/vi/I-ihC-FXbbI/hqdefault.jpg',
-    youtubeId: 'I-ihC-FXbbI',
-  },
-],
+  videos: [ 
+    {
+      id: 5,
+      title: 'Video conmovedor sobre víctimas de bullying',
+      description: 'Jóvenes leen mensajes de víctimas reales de bullying, mostrando el impacto emocional que deja el acoso.',
+      duration: '~5 min',
+      category: 'Impacto',
+      url: 'https://www.youtube.com/watch?v=4zxvLu3UYP8',
+      thumbnail: 'https://img.youtube.com/vi/4zxvLu3UYP8/hqdefault.jpg',
+      youtubeId: '4zxvLu3UYP8',
+    },
+    {
+      id: 3,
+      title: 'Cortometraje sobre bullying (historia impactante)',
+      description: 'Corto realista que muestra las consecuencias emocionales del bullying en estudiantes.',
+      duration: '~7 min',
+      category: 'Corto',
+      url: 'https://www.youtube.com/watch?v=91HgatU6zL8',
+      thumbnail: 'https://img.youtube.com/vi/91HgatU6zL8/hqdefault.jpg',
+      youtubeId: '91HgatU6zL8',
+    },
+    {
+      id: 6,
+      title: 'Cortometraje bullying – No entiendo por qué',
+      description: 'Historia reflexiva sobre el bullying y sus consecuencias emocionales en adolescentes.',
+      duration: '~6 min',
+      category: 'Conciencia',
+      url: 'https://www.youtube.com/watch?v=ped-Vde_xwI',
+      thumbnail: 'https://img.youtube.com/vi/ped-Vde_xwI/hqdefault.jpg',
+      youtubeId: 'ped-Vde_xwI',
+    },
+    {
+      id: 2,
+      title: 'Testimonios contra el Acoso Escolar',
+      description: 'Serie de testimonios en video de jóvenes que han vivido el acoso escolar, compartiendo sus experiencias y consejos.',
+      duration: '~12 min',
+      category: 'Testimonio',
+      url: 'https://www.youtube.com/watch?v=TwnrKUceJbQ',
+      thumbnail: 'https://img.youtube.com/vi/TwnrKUceJbQ/hqdefault.jpg',
+      youtubeId: 'TwnrKUceJbQ',
+    },
+    {
+      id: 4,
+      title: 'Cortometraje sobre bullying (caso realista)',
+      description: 'Corto impactante basado en situaciones reales de acoso escolar que refleja sus consecuencias emocionales.',
+      duration: '~10 min',
+      category: 'Corto',
+      url: 'https://www.youtube.com/watch?v=Mp-8gRAWWqI',
+      thumbnail: 'https://img.youtube.com/vi/Mp-8gRAWWqI/hqdefault.jpg',
+      youtubeId: 'Mp-8gRAWWqI',
+    },
+    {
+      id: 1,
+      title: 'El bullying explicado: señales y consecuencias reales',
+      description: 'Explicación clara del acoso escolar con ejemplos reales y señales de alerta que muchas veces pasan desapercibidas.',
+      duration: '~6 min',
+      category: 'Conciencia',
+      url: 'https://www.youtube.com/watch?v=I-ihC-FXbbI',
+      thumbnail: 'https://img.youtube.com/vi/I-ihC-FXbbI/hqdefault.jpg',
+      youtubeId: 'I-ihC-FXbbI',
+    },
+  ],
   studies: [
     {
       id: 1,
@@ -165,31 +165,24 @@ const colorMap = {
 };
 
 const hexagonData = [
-  { id: 1, icon: Shield,  title: 'Protección Activa',       description: 'Protocolos de seguridad verificados por expertos internacionales.', color: 'trust',  pilar: 'Prevención' },
-  { id: 2, icon: Users,   title: 'Comunidad Unida',          description: 'Fomentar la empatía y el apoyo mutuo entre estudiantes.',            color: 'teal',   pilar: 'Cultura'    },
+  { id: 1, icon: Shield,  title: 'Protección Activa',        description: 'Protocolos de seguridad verificados por expertos internacionales.', color: 'trust',  pilar: 'Prevención' },
+  { id: 2, icon: Users,   title: 'Comunidad Unida',          description: 'Fomentar la empatía y el apoyo mutuo entre estudiantes.',             color: 'teal',   pilar: 'Cultura'    },
   { id: 3, icon: Zap,     title: 'Detección Ágil',           description: 'Identificar señales de alerta temprana en el entorno digital.',      color: 'amber',  pilar: 'Acción'     },
   { id: 4, icon: Target,  title: 'Intervención Focalizada',  description: 'Estrategias directas basadas en la evidencia recolectada.',          color: 'coral',  pilar: 'Estrategia' },
   { id: 5, icon: Heart,   title: 'Apoyo Emocional',          description: 'Recursos dedicados a la salud mental y la sanación.',                color: 'purple', pilar: 'Sanación'   },
-  { id: 6, icon: Brain,   title: 'Educación Continua',       description: 'Formación constante para familias, docentes y alumnos.',             color: 'blue',   pilar: 'Formación'  },
+  { id: 6, icon: Brain,   title: 'Educación Continua',        description: 'Formación constante para familias, docentes y alumnos.',             color: 'blue',   pilar: 'Formación'  },
 ];
 
 const hexColorMap = {
-  trust:  { text: 'text-blue-400',   bg: 'bg-blue-500/10',   border: 'border-blue-500/30',   stop: '#3b82f6' },
-  teal:   { text: 'text-teal-400',   bg: 'bg-teal-500/10',   border: 'border-teal-500/30',   stop: '#14b8a6' },
-  amber:  { text: 'text-amber-400',  bg: 'bg-amber-500/10',  border: 'border-amber-500/30',  stop: '#f59e0b' },
-  coral:  { text: 'text-red-400',    bg: 'bg-red-500/10',    border: 'border-red-500/30',    stop: '#ef4444' },
-  purple: { text: 'text-violet-400', bg: 'bg-violet-500/10', border: 'border-violet-500/30', stop: '#8b5cf6' },
-  blue:   { text: 'text-blue-400',   bg: 'bg-blue-500/10',   border: 'border-blue-500/30',   stop: '#60a5fa' },
+  trust:  { text: 'text-blue-400',   bg: 'bg-blue-500/20',   border: 'border-blue-500/30',   stop: '#3b82f6' },
+  teal:   { text: 'text-teal-400',   bg: 'bg-teal-500/20',   border: 'border-teal-500/30',   stop: '#14b8a6' },
+  amber:  { text: 'text-amber-400',  bg: 'bg-amber-500/20',  border: 'border-amber-500/30',  stop: '#f59e0b' },
+  coral:  { text: 'text-red-400',    bg: 'bg-red-500/20',    border: 'border-red-500/30',    stop: '#ef4444' },
+  purple: { text: 'text-violet-400', bg: 'bg-violet-500/20', border: 'border-violet-500/30', stop: '#8b5cf6' },
+  blue:   { text: 'text-blue-400',   bg: 'bg-blue-500/20',   border: 'border-blue-500/30',   stop: '#60a5fa' },
 };
 
 // ─── InteractiveHexagon ────────────────────────────────────────────────────────
-// CAMBIOS:
-//   • Padding reducido en mobile (p-2 sm:p-4 md:p-6) para que quepa el contenido
-//   • Icono más pequeño en mobile (w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12)
-//   • Título: text-xs sm:text-sm md:text-base (visible en desktop y mobile)
-//   • Descripción: visible a partir de md (antes era sm)
-//   • Pilar: visible en todos los tamaños con texto ligeramente más grande
-
 const InteractiveHexagon = ({ item, index }) => {
   const c = hexColorMap[item.color];
   const Icon = item.icon;
@@ -206,16 +199,16 @@ const InteractiveHexagon = ({ item, index }) => {
       <svg viewBox="0 0 100 115.47" className={`absolute inset-0 w-full h-full drop-shadow-2xl transition-all duration-300 ${c.text}`}>
         <defs>
           <linearGradient id={`grad-${item.id}`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#0f172a" stopOpacity="1" />
-            <stop offset="100%" stopColor={c.stop} stopOpacity="0.08" />
+            <stop offset="0%" stopColor="#082f49" stopOpacity="0.95" />
+            <stop offset="100%" stopColor={c.stop} stopOpacity="0.6" />
           </linearGradient>
         </defs>
         <path
           d="M50 0 L100 28.87 L100 86.6 L50 115.47 L0 86.6 L0 28.87 Z"
           fill={`url(#grad-${item.id})`}
           stroke="currentColor"
-          strokeWidth="1.5"
-          className="opacity-30 group-hover:opacity-100 transition-opacity duration-500"
+          strokeWidth="3.5"
+          className="opacity-90 group-hover:opacity-100 transition-opacity duration-500"
         />
       </svg>
 
@@ -225,39 +218,41 @@ const InteractiveHexagon = ({ item, index }) => {
         <div className={`
           w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 lg:w-12 lg:h-12
           rounded-full ${c.bg} flex items-center justify-center
-          mb-2 sm:mb-2 md:mb-2.5 lg:mb-3
+          mb-1 sm:mb-2 md:mb-2.5 lg:mb-3
           border ${c.border}
           group-hover:scale-110 transition-transform shrink-0
+          shadow-lg
         `}>
-          <Icon className={`w-5 h-5 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-6 lg:h-6 ${c.text}`} strokeWidth={1.5} />
+          <Icon className={`w-5 h-5 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-6 lg:h-6 ${c.text}`} strokeWidth={2} />
         </div>
 
         {/* Pilar — visible en todos los tamaños */}
         <p className={`
-          text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px]
-          font-black uppercase tracking-[0.15em] sm:tracking-[0.2em]
+          text-[10px] sm:text-[10px] md:text-[11px] lg:text-[12px]
+          font-extrabold uppercase tracking-[0.15em] sm:tracking-[0.2em]
           ${c.text} mb-1 sm:mb-1
-          opacity-70 group-hover:opacity-100 transition-opacity
+          drop-shadow-md
         `}>
           {item.pilar}
         </p>
 
         {/* Título — grande y visible en desktop */}
         <h3 className="
-          font-display font-bold text-softwhite leading-tight
-          text-[11px] sm:text-sm md:text-sm lg:text-base
+          font-display font-black text-white leading-tight
+          text-[11px] sm:text-[13px] md:text-[15px] lg:text-[16px]
           mb-1 sm:mb-1 md:mb-1.5 lg:mb-2
-          px-1
+          px-1 drop-shadow-sm
         ">
           {item.title}
         </h3>
 
-        {/* Descripción — visible desde sm en adelante */}
+        {/* Descripción — visible desde sm en adelante y con texto más grande */}
         <p className="
-          text-softwhite/90 leading-relaxed
+          text-slate-200 leading-relaxed
           hidden sm:block
-          text-[9px] sm:text-[10px] md:text-[10px] lg:text-[11px]
-          max-w-[110px] sm:max-w-[130px] md:max-w-[130px] lg:max-w-[145px]
+          text-[10px] sm:text-[10.5px] md:text-[11.5px] lg:text-[12px]
+          max-w-[110px] sm:max-w-[130px] md:max-w-[135px] lg:max-w-[145px]
+          font-medium
         ">
           {item.description}
         </p>
@@ -272,52 +267,52 @@ const VideoCard = ({ video, index }) => (
     initial={{ opacity: 0, y: 24 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ delay: index * 0.08 }}
-    className="group flex flex-col bg-white/[0.03] border border-white/8 rounded-2xl overflow-hidden hover:border-trust/30 hover:bg-white/[0.05] transition-all duration-300"
+    className="group flex flex-col bg-white/90 border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm shadow-slate-500/10 hover:shadow-md hover:shadow-slate-500/15 transition-all duration-300"
   >
-    <div className="relative aspect-video bg-black/40 overflow-hidden">
+    <div className="relative aspect-video bg-slate-100 overflow-hidden">
       {video.thumbnail ? (
         <img
           src={video.thumbnail}
           alt={video.title}
-          className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+          className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
       ) : (
-        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-trust/10 to-hope/10">
-          <Play className="w-10 h-10 text-trust/40" />
+        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#6fe5f1]/20 to-[#aaf1f7]/20">
+          <Play className="w-10 h-10 text-teal-700/70" />
         </div>
       )}
-      <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity">
+      <div className="absolute inset-0 flex items-center justify-center bg-slate-900/20 opacity-0 group-hover:opacity-100 transition-opacity">
         <a
           href={video.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-14 h-14 bg-trust rounded-full flex items-center justify-center shadow-lg shadow-trust/30 hover:scale-110 transition-transform"
+          className="w-14 h-14 bg-teal-900 rounded-full flex items-center justify-center shadow-lg shadow-teal-900/20 hover:scale-110 transition-transform"
         >
-          <Play className="w-5 h-5 text-white fill-white ml-0.5" />
+          <Play className="w-5 h-5 text-white" />
         </a>
       </div>
       <div className="absolute top-3 left-3">
-        <span className="bg-trust/90 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-widest">
+        <span className="bg-slate-900/90 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-widest">
           {video.category}
         </span>
       </div>
       {video.duration && (
         <div className="absolute bottom-3 right-3">
-          <span className="bg-black/70 backdrop-blur text-softwhite text-[10px] px-2 py-1 rounded-lg flex items-center gap-1">
+          <span className="bg-slate-900/80 text-white text-[10px] px-2 py-1 rounded-lg flex items-center gap-1">
             <Clock size={9} /> {video.duration}
           </span>
         </div>
       )}
     </div>
     <div className="p-5 flex flex-col flex-1">
-      <h3 className="font-bold text-softwhite text-base leading-snug mb-2 group-hover:text-trust transition-colors">
+      <h3 className="font-bold text-slate-900 text-base leading-snug mb-2 transition-colors">
         {video.title}
       </h3>
-      <p className="text-sm text-mutedblue/70 leading-relaxed flex-1">{video.description}</p>
+      <p className="text-sm text-slate-600 leading-relaxed flex-1">{video.description}</p>
       <a
         href={video.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-5 flex items-center gap-2 text-trust text-sm font-bold hover:gap-3 transition-all"
+        className="mt-5 flex items-center gap-2 text-teal-900 text-sm font-bold hover:gap-3 transition-all"
       >
         Ver recurso <ArrowUpRight size={14} />
       </a>
@@ -334,34 +329,34 @@ const StudyCard = ({ study, index }) => (
     initial={{ opacity: 0, y: 16 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ delay: index * 0.07 }}
-    className="group flex gap-4 items-start bg-white/[0.03] border border-white/8 p-5 rounded-2xl hover:bg-white/[0.05] hover:border-trust/30 transition-all duration-200 cursor-pointer"
+    className="group flex gap-4 items-start bg-white/90 border border-slate-200/60 p-5 rounded-3xl hover:shadow-lg hover:shadow-slate-400/15 transition-all duration-200 cursor-pointer"
   >
-    <div className="w-12 h-12 shrink-0 bg-trust/10 rounded-xl flex items-center justify-center group-hover:bg-trust/20 transition-colors">
-      <BookOpen className="text-trust" size={22} />
+    <div className="w-12 h-12 shrink-0 bg-[#6fe5f1]/15 rounded-xl flex items-center justify-center group-hover:bg-[#6fe5f1]/25 transition-colors">
+      <BookOpen className="text-teal-800" size={22} />
     </div>
     <div className="flex-1 min-w-0">
       <div className="flex flex-wrap gap-1.5 mb-2">
         {study.tags.map((tag) => (
           <span
             key={tag}
-            className="text-[11px] font-bold text-mutedblue/70 border border-white/15 px-2.5 py-0.5 rounded-full uppercase tracking-tight"
+            className="text-[11px] font-bold text-slate-500 border border-slate-200 px-2.5 py-0.5 rounded-full uppercase tracking-tight"
           >
             {tag}
           </span>
         ))}
       </div>
-      <h3 className="font-bold text-softwhite text-base leading-snug mb-2 group-hover:text-trust transition-colors">
+      <h3 className="font-bold text-slate-900 text-base leading-snug mb-2 transition-colors">
         {study.title}
       </h3>
-      <p className="text-sm text-mutedblue/80 leading-relaxed mb-3">{study.description}</p>
-      <div className="flex items-center gap-3 text-sm text-mutedblue/70">
-        <span className="font-semibold text-trust/80">{study.author}</span>
+      <p className="text-sm text-slate-600 leading-relaxed mb-3">{study.description}</p>
+      <div className="flex items-center gap-3 text-sm text-slate-500">
+        <span className="font-semibold text-teal-700/90">{study.author}</span>
         <span>·</span>
         <span>{study.year}</span>
       </div>
     </div>
     <div className="shrink-0 pt-1">
-      <div className="w-9 h-9 bg-white/5 rounded-xl flex items-center justify-center group-hover:bg-trust/20 group-hover:text-trust transition-all text-mutedblue/60">
+      <div className="w-9 h-9 bg-slate-100 rounded-xl flex items-center justify-center group-hover:bg-teal-100 transition-all text-slate-500">
         <ExternalLink size={15} />
       </div>
     </div>
@@ -377,7 +372,7 @@ const LiveDataCard = ({ item, index }) => {
       initial={{ opacity: 0, scale: 0.96 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay: index * 0.08 }}
-      className={`relative rounded-2xl border p-6 flex flex-col gap-4 ${c.bg} ${c.border}`}
+      className={`relative rounded-3xl border p-6 flex flex-col gap-4 bg-white/85 border-slate-200/50`}
     >
       <div className="flex items-center justify-between">
         <div className={`flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest ${c.text}`}>
@@ -391,9 +386,9 @@ const LiveDataCard = ({ item, index }) => {
       </div>
       <div>
         <p className={`text-5xl font-display font-bold leading-none mb-2 ${c.value}`}>{item.value}</p>
-        <p className="font-bold text-softwhite text-sm leading-snug">{item.title}</p>
+        <p className="font-bold text-slate-900 text-sm leading-snug">{item.title}</p>
       </div>
-      <p className="text-sm text-mutedblue/80 leading-relaxed">{item.description}</p>
+      <p className="text-sm text-slate-600 leading-relaxed">{item.description}</p>
       <a
         href={item.sourceUrl}
         target="_blank"
@@ -415,22 +410,24 @@ export default function Resources() {
   const inView = useInView(headerRef, { once: true });
 
   const tabs = [
-    { id: 'videos',    label: 'Multimedia',      icon: Play      },
-    { id: 'studies',   label: 'Investigaciones', icon: BarChart3 },
-    { id: 'liveData',  label: 'Datos en Vivo',   icon: MessageSquare },
+    { id: 'videos',   label: 'Multimedia',     icon: Play      },
+    { id: 'studies',  label: 'Investigaciones', icon: BarChart3 },
+    { id: 'liveData', label: 'Datos en Vivo',   icon: MessageSquare },
   ];
 
   return (
-    <div className="min-h-screen bg-midnight text-softwhite font-body pt-24 pb-24">
+    <div className="relative min-h-screen bg-[radial-gradient(circle_at_top_left,_#aaf1f7_0%,_#6fe5f1_35%,_#e6fbff_100%)] text-slate-900 font-body pt-24 pb-24 overflow-hidden">
+      <div className="absolute top-0 right-0 w-72 h-72 rounded-full bg-white/70 blur-3xl opacity-80 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-[#0d7ea2]/15 blur-3xl opacity-90 pointer-events-none" />
 
       {/* ── HERO ── */}
-      <section className="container mx-auto max-w-6xl px-4 sm:px-6 text-center mb-16 sm:mb-20">
+      <section className="container mx-auto max-w-6xl px-4 sm:px-6 text-center mb-16 sm:mb-20 relative z-10">
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-display font-bold mb-5 tracking-tight leading-none">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-display font-bold mb-5 tracking-tight leading-none text-slate-900">
             Biblioteca de<br />
-            <span className="text-trust">Evidencia</span>
+            <span className="text-teal-800">Evidencia</span>
           </h1>
-          <p className="text-mutedblue text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+          <p className="text-slate-700 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
             Un repositorio de datos reales, investigaciones revisadas por expertos y recursos multimedia
             para la prevención del acoso escolar.
           </p>
@@ -446,11 +443,11 @@ export default function Resources() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.2 + i * 0.08 }}
-                className="bg-white/[0.03] border border-white/8 rounded-2xl p-4 sm:p-5 text-center"
+                className="bg-white/90 border border-slate-200/60 rounded-3xl p-5 sm:p-6 text-center shadow-sm shadow-slate-400/10"
               >
-                <Icon className={`w-4 h-4 mx-auto mb-2 ${stat.color}`} />
-                <div className="text-xl sm:text-2xl font-display font-bold mb-1">{stat.value}</div>
-                <div className="text-[11px] sm:text-xs uppercase font-bold tracking-widest text-mutedblue/60 leading-tight">
+                <Icon className={`w-5 h-5 mx-auto mb-2 ${stat.color}`} />
+                <div className="text-xl sm:text-2xl font-display font-bold mb-1 text-slate-900">{stat.value}</div>
+                <div className="text-[11px] sm:text-xs uppercase font-bold tracking-widest text-slate-500 leading-tight">
                   {stat.label}
                 </div>
               </motion.div>
@@ -463,16 +460,16 @@ export default function Resources() {
       <div className="container mx-auto max-w-6xl px-4 sm:px-6">
 
         {/* Tabs */}
-        <div className="flex justify-center mb-10 sm:mb-14">
-          <div className="flex flex-wrap justify-center gap-1.5 bg-white/[0.03] p-1.5 rounded-2xl border border-white/8">
+        <div className="flex justify-center mb-10 sm:mb-14 relative z-10">
+          <div className="flex flex-wrap justify-center gap-2 bg-white/90 p-2 rounded-3xl border border-slate-200/60 shadow-sm shadow-slate-400/10">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-4 sm:px-7 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+                className={`flex items-center gap-2 px-4 sm:px-7 py-2.5 rounded-2xl text-xs sm:text-sm font-semibold transition-all ${
                   activeTab === tab.id
-                    ? 'bg-trust text-white shadow-lg shadow-trust/20'
-                    : 'text-mutedblue hover:text-softwhite'
+                    ? 'bg-teal-900 text-white shadow-lg shadow-teal-900/20'
+                    : 'text-slate-600 hover:text-slate-900'
                 }`}
               >
                 <tab.icon size={14} />
@@ -500,9 +497,9 @@ export default function Resources() {
             {activeTab === 'studies' && (
               <div className="flex flex-col gap-4">
                 {resources.studies.map((s, i) => <StudyCard key={s.id} study={s} index={i} />)}
-                <div className="mt-4 flex items-start gap-3 bg-trust/5 border border-trust/15 rounded-2xl p-5">
-                  <Shield size={17} className="text-trust shrink-0 mt-0.5" />
-                  <p className="text-sm text-mutedblue/80 leading-relaxed">
+                <div className="mt-4 flex items-start gap-3 bg-blue-500/10 border border-blue-500/20 rounded-2xl p-5">
+                  <Shield size={17} className="text-blue-500 shrink-0 mt-0.5" />
+                  <p className="text-sm text-slate-800 leading-relaxed">
                     Todas las investigaciones provienen de organismos internacionales reconocidos.
                   </p>
                 </div>
@@ -519,7 +516,7 @@ export default function Resources() {
 
         {/* ── SECCIÓN HEXÁGONOS ── */}
         <section className="mt-20 sm:mt-32 md:mt-40 mb-16 sm:mb-20 relative">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-trust/5 blur-[120px] pointer-events-none rounded-full" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-sky-300/10 blur-[120px] pointer-events-none rounded-full" />
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -528,21 +525,14 @@ export default function Resources() {
             className="text-center mb-12 sm:mb-16 lg:mb-20 relative z-10"
           >
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6">
-              Pilares de la <span className="text-trust">Resiliencia</span>
+              Pilares de la <span className="text-teal-800">Resiliencia</span>
             </h2>
-            <p className="text-mutedblue text-sm sm:text-base max-w-3xl mx-auto leading-relaxed px-2">
+            <p className="text-slate-700 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed px-2">
               Basado en el modelo ecológico de la OMS, este diagrama representa cómo la evidencia
               se transforma en un ecosistema de seguridad para los estudiantes.
             </p>
           </motion.div>
 
-          {/*
-            GRID DE HEXÁGONOS:
-            • Mobile (< sm): 2 columnas con hexágonos en tamaño normal
-            • sm → md: 3 columnas con más espacio
-            • md+: 3 columnas full con espaciado amplio
-            • Se ajusta el max-w para mejor legibilidad
-          */}
           <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8 max-w-sm sm:max-w-2xl md:max-w-4xl lg:max-w-5xl mx-auto px-3 sm:px-4">
             {hexagonData.map((item, index) => (
               <InteractiveHexagon key={item.id} item={item} index={index} />

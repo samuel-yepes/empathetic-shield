@@ -55,11 +55,11 @@ export default function TestimonialsSection() {
   const handlePrev = () => { setActive((a) => (a - 1 + testimonials.length) % testimonials.length); setProgress(0); };
 
   return (
-    <section ref={sectionRef} className="py-20 md:py-32 bg-midnight relative overflow-hidden">
+    <section ref={sectionRef} className="py-20 md:py-32 bg-[#e6fbff] relative overflow-hidden">
       {/* Background Decor */}
-      <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-        <div className="absolute top-1/4 left-10 w-64 h-64 bg-trust rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 right-10 w-64 h-64 bg-warm rounded-full blur-[120px]" />
+      <div className="absolute top-0 left-0 w-full h-full opacity-25 pointer-events-none">
+        <div className="absolute top-1/4 left-10 w-64 h-64 bg-[#0d7ea2]/15 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 right-10 w-64 h-64 bg-rose-100/90 rounded-full blur-[120px]" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -71,11 +71,11 @@ export default function TestimonialsSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
             >
-              <h2 className="font-display font-bold text-4xl md:text-6xl text-softwhite mb-6 leading-tight">
+              <h2 className="font-display font-bold text-4xl md:text-6xl text-slate-900 mb-6 leading-tight">
                 Voces que <br className="hidden lg:block" /> 
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-hope to-trust italic">rompen el silencio</span>
+                <span className="text-teal-800 italic">rompen el silencio</span>
               </h2>
-              <p className="text-mutedblue text-base md:text-lg font-body max-w-xl mx-auto lg:mx-0">
+              <p className="text-slate-700 text-base md:text-lg font-body max-w-xl mx-auto lg:mx-0">
                 Historias reales de quienes vivieron el ciclo y decidieron cambiar el final. Tu voz también importa.
               </p>
               
@@ -96,13 +96,13 @@ export default function TestimonialsSection() {
                   animate={{ opacity: 1, scale: 1, x: 0 }}
                   exit={{ opacity: 0, scale: 1.05, x: -20 }}
                   transition={{ duration: 0.5, ease: "circOut" }}
-                  className={`absolute w-full max-w-xl glass-card rounded-[2rem] md:rounded-[2.5rem] p-8 md:p-14 border border-softwhite/10 bg-gradient-to-br ${testimonials[active].color} backdrop-blur-3xl shadow-2xl`}
+                  className={`absolute w-full max-w-xl glass-card rounded-[2rem] md:rounded-[2.5rem] p-8 md:p-14 border border-white/30 bg-white/90 backdrop-blur-3xl shadow-2xl`}
                 >
-                  <div className="absolute -top-4 -left-4 md:-top-6 md:-left-6 w-12 h-12 md:w-16 md:h-16 bg-midnight border border-softwhite/10 rounded-xl md:rounded-2xl flex items-center justify-center text-trust">
-                    <Quote size={24} className="md:w-8 md:h-8 opacity-40" />
+                  <div className="absolute -top-4 -left-4 md:-top-6 md:-left-6 w-12 h-12 md:w-16 md:h-16 bg-white border border-slate-200 rounded-xl md:rounded-2xl flex items-center justify-center text-[#0d7ea2] shadow-md">
+                    <Quote size={24} className="md:w-8 md:h-8 opacity-70" />
                   </div>
 
-                  <blockquote className="font-display text-xl md:text-3xl text-softwhite leading-relaxed mb-8 md:mb-10 italic">
+                  <blockquote className="font-display text-xl md:text-3xl text-slate-900 leading-relaxed mb-8 md:mb-10 italic">
                     "{testimonials[active].quote}"
                   </blockquote>
 
@@ -113,17 +113,17 @@ export default function TestimonialsSection() {
                       </span>
                     </div>
                     <div>
-                      <h4 className="text-softwhite font-display font-bold text-base md:text-lg leading-none mb-1">
-                        Anónimo <span className="text-mutedblue/50 font-normal ml-1">| {testimonials[active].age}</span>
+                      <h4 className="text-slate-900 font-display font-bold text-base md:text-lg leading-none mb-1">
+                        Anónimo <span className="text-slate-500/70 font-normal ml-1">| {testimonials[active].age}</span>
                       </h4>
-                      <p className="text-trust font-mono text-[10px] md:text-xs uppercase tracking-widest">
+                      <p className="text-slate-600 font-mono text-[10px] md:text-xs uppercase tracking-widest">
                         {testimonials[active].role}
                       </p>
                     </div>
                   </div>
 
                   {/* Progress Bar */}
-                  <div className="absolute bottom-0 left-0 w-full h-1 bg-white/5 rounded-b-full overflow-hidden">
+                  <div className="absolute bottom-0 left-0 w-full h-1 bg-slate-200 rounded-b-full overflow-hidden">
                     <motion.div 
                       className={`h-full ${testimonials[active].accent}`}
                       initial={{ width: "0%" }}
@@ -156,14 +156,14 @@ function ControlButtons({ handlePrev, handleNext }) {
     <>
       <button 
         onClick={handlePrev}
-        className="p-4 md:p-5 rounded-2xl border border-softwhite/10 bg-softwhite/5 text-softwhite active:scale-95 transition-all"
+        className="p-4 md:p-5 rounded-2xl border border-slate-300 bg-white text-[#0d7ea2] active:scale-95 transition-all shadow-sm"
         aria-label="Anterior"
       >
         <ChevronLeft size={24} />
       </button>
       <button 
         onClick={handleNext}
-        className="p-4 md:p-5 rounded-2xl border border-softwhite/10 bg-softwhite/5 text-softwhite active:scale-95 transition-all"
+        className="p-4 md:p-5 rounded-2xl border border-slate-300 bg-white text-[#0d7ea2] active:scale-95 transition-all shadow-sm"
         aria-label="Siguiente"
       >
         <ChevronRight size={24} />

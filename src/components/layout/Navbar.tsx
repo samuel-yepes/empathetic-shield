@@ -28,25 +28,18 @@ export default function Navbar() {
       initial={{ y: -80 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 text-slate-900 transition-all duration-300 ${
         scrolled
-          ? 'py-3 bg-midnight/80 backdrop-blur-xl border-b border-softwhite/5'
-          : 'py-5 bg-transparent'
+          ? 'py-3 bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-sm'
+          : 'py-3 bg-white/80 backdrop-blur-xl'
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-4 lg:px-8">
-        <Link to="/" className="flex items-center gap-4 group">
-          <motion.img 
-            src="/logo.png" 
-            alt="Escudo Logo" 
-            className="w-12 h-12 md:w-24 md:h-24"
-            whileHover={{ rotate: 12 }} 
-            transition={{ type: 'spring', stiffness: 300 }}
-          />
-          {/* <span className="font-display font-bold text-4xl text-softwhite">Empathix</span> */}
+        <Link to="/" className="font-display font-semibold text-lg text-slate-900">
+          Empathix
         </Link>
 
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6">
           {links.map((link, i) => (
             <motion.div
               key={link.label}
@@ -56,8 +49,8 @@ export default function Navbar() {
             >
               <Link
                 to={link.to}
-                className={`text-sm font-body transition-colors hover:text-trust ${
-                  location.pathname === link.to ? 'text-trust' : 'text-mutedblue'
+                className={`text-sm font-body transition-colors hover:text-[#0d7ea2] ${
+                  location.pathname === link.to ? 'text-[#0d7ea2]' : 'text-slate-700'
                 }`}
               >
                 {link.label}
@@ -70,7 +63,7 @@ export default function Navbar() {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
             <Link
               to="/caminos"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full gradient-trust-hope text-softwhite font-body font-semibold text-sm shadow-lg shadow-trust/20"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0d7ea2] text-white font-body font-semibold text-sm shadow-lg shadow-[#0d7ea2]/20"
             >
               Encuentra tu Ruta
               <span>→</span>
@@ -78,7 +71,7 @@ export default function Navbar() {
           </motion.div>
         </div>
 
-        <button className="md:hidden text-softwhite" onClick={() => setMobileOpen(!mobileOpen)}>
+        <button className="md:hidden text-slate-900" onClick={() => setMobileOpen(!mobileOpen)}>
           {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
